@@ -1,0 +1,30 @@
+<html>
+
+    <body>
+        <button onclick="initialize()">Interactions</button>
+    </body>
+
+    <script>
+
+function initialize(){
+    console.log("init");
+    var features = ['left=10',
+                    'top=10',
+                    'location=0',
+                    'menubar=0',
+                    'resizable=0',
+                    'scrollbars=1',
+                    'status=0',
+                    'titlebar=0',
+                    'width=250',
+                    'height=700',
+                    'toolbar=0']
+    var interactionWindow = window.open( 
+        './interaction.html', 
+        'Interactions', 
+        features.join(','));
+        interactionWindow.focus();
+}
+    </script>
+    <!-- vim:set sw=4 ts=4 sts=2 noet: -->
+</html>

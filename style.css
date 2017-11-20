@@ -1,0 +1,76 @@
+body{
+    padding:0;
+    margin:0;
+    font-family: Monospace;
+    background: black;
+    color: greenyellow;
+}
+textarea.interaction-content{
+    padding: 0.5em;
+    border: none;
+    display: inline-block;
+    width: 100%;
+    min-height: 16em;
+    max-height: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: smaller;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.id-label{
+    font-style: bold;
+    font-size: small;
+}
+input.id-label{
+    border: none;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: small;
+    background: yellowgreen;
+    height: 24px;
+}
+div.interaction {
+    width: 200px;
+    padding: 0.5em;
+    margin: 0.5em;
+    background: steelblue;
+    color: white;
+    border: 2px  whitesmoke;
+    border-radius: 4px;
+}
+div.interaction-header {
+    padding: 4px;
+    background: darkblue;
+    border-radius: 4px;
+    color: white;
+}
+div.interaction-control {
+    margin: 0px;
+    padding-top: 4px;
+    padding-bottom: 0px;
+    max-height: 48px;
+}
+button.control{
+    background-color: white; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+}
+svg{
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+img.icon{
+    width: 16px;
+    height: 16px;
+}
