@@ -12,7 +12,7 @@ textarea.interaction-content{
     width: 100%;
     min-height: 16em;
     max-height: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: sans-serif;
     font-size: smaller;
     box-sizing: border-box;
     border-radius: 4px;
