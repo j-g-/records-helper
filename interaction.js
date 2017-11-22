@@ -1,13 +1,7 @@
 
-//var sample = 	
-		//"***Touch Commerce***\n"+
-		//"Chat ID:\n"+
-		//"e-mail:\n"+
-		//"Issue:\n"+
-		//"Carrier/Dep:\n"+
-		//"Actions Taken:\n"+ 
-		//"Resolution:\n";
 var sample = "Sample:";
+
+var groupSet = 0;
 var interactions = {
 	'A' :  [],
 	'B' :  [],
@@ -16,23 +10,23 @@ var interactions = {
 var icount = 0;
 
 function restore(interID){
-		id = 'interaction-ta-'+ interID;
-		ta = document.getElementById(id); //text area
-		ov = interactions[interID].pop();
-		ta.value = ov;
+	id = 'interaction-ta-'+ interID;
+	ta = document.getElementById(id); //text area
+	ov = interactions[interID].pop();
+	ta.value = ov;
 }
 function bringToFront(interID){
-		id = 'interaction-box-'+ interID;
-		db = document.getElementById(id); //db box
-        db.style.position  = "absolute";
-        db.style.zindex  = "-1";
+	id = 'interaction-box-'+ interID;
+	db = document.getElementById(id); //db box
+	db.style.position  = "absolute";
+	db.style.zindex  = "-1";
 }
 function copyToClipboard(interID){
-		id = 'interaction-ta-'+ interID;
-        ta = document.getElementById(id); //text area
-        ta.select();
-        document.execCommand("Copy");
-        console.log("Copied interaction " + interID  );
+	id = 'interaction-ta-'+ interID;
+	ta = document.getElementById(id); //text area
+	ta.select();
+	document.execCommand("Copy");
+	console.log("Copied interaction " + interID  );
 }
 
 function reset(interID){
@@ -52,14 +46,14 @@ function reset(interID){
 				interactions['B'].push(ta.value); break;
 		}
 	}
-    ta.value = sample;
+	ta.value = sample;
 
 }
 
 function saveSample(){
 	ta = document.getElementById("sample-ta");
-    sample = ta.value;
-    initialize();
+	sample = ta.value;
+	initialize();
 }
 
 function initialize(){
@@ -71,4 +65,20 @@ function initialize(){
 
 	}
 }
+
+function next(interID){
+
+}
+
+function prev(interID){
+
+}
+
+//function InteractionGroup(ID){
+//	return {
+//		id: ID,
+//		recordSet = []
+//	};
+//
+//}
 window.onload = initialize;
