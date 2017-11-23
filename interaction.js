@@ -1,13 +1,29 @@
 
 var sample = "Sample:";
 
-var groupSet = 0;
+var groupSet = [];
 var interactions = {
 	'A' :  [],
 	'B' :  [],
 };
 
 var icount = 0;
+
+//Records Group Prototype
+function  RecordsGroup (){
+	this.displayedIndex = 0;
+	this.recordSet = [];
+}
+RecordsGroup.prototype.addRecord = function(record){
+	this.recordSet.push(record)
+}
+
+//Record Prototype
+function Record (associatedID, record, dateTime ){
+	this.associatedID = associatedID;
+	this.savedAt =  dateTime;
+	this.record = record;
+}
 
 function restore(interID){
 	id = 'interaction-ta-'+ interID;
@@ -56,15 +72,6 @@ function saveSample(){
 	initialize();
 }
 
-function initialize(){
-	console.log("Starting Records");
-	console.log(sample);
-	ta = document.getElementsByClassName("interaction-content");
-	for (i = 0; i < ta.length ; i++) {
-		ta[i].value = sample;
-
-	}
-}
 
 function next(interID){
 
@@ -74,11 +81,13 @@ function prev(interID){
 
 }
 
-//function InteractionGroup(ID){
-//	return {
-//		id: ID,
-//		recordSet = []
-//	};
-//
-//}
-window.onload = initialize;
+function initialize(){
+	console.log("Starting Records");
+	console.log(sample);
+	ta = document.getElementsByClassName("interaction-content");
+	for (i = 0; i < ta.length ; i++) {
+		ta[i].value = sample;
+	}
+}
+
+	window.onload = initialize;
