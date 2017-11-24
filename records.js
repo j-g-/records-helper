@@ -26,37 +26,38 @@ function Record (associatedID, record, dateTime ){
 	this.record = record;
 }
 
-function restore(interID){
-	id = 'interaction-ta-'+ interID;
+function restore(rgID){
+	id = 'record-ta-'+ rgID;
 	ta = document.getElementById(id); //text area
-	ov = interactions[interID].pop();
+	ov = interactions[rgID].pop();
 	ta.value = ov;
 }
-function bringToFront(interID){
-	id = 'interaction-box-'+ interID;
+function bringToFront(rgID){
+	id = 'record-box-'+ rgID;
+	console.log("bring to front " + id)
 	db = document.getElementById(id); //db box
 	db.style.position  = "absolute";
 	db.style.zindex  = "-1";
 }
-function copyToClipboard(interID){
-	id = 'interaction-ta-'+ interID;
+function copyToClipboard(rgID){
+	id = 'record-ta-'+ rgID;
 	ta = document.getElementById(id); //text area
 	ta.select();
 	document.execCommand("Copy");
-	console.log("Copied interaction " + interID  );
+	console.log("Copied record " + rgID  );
 }
 
-function reset(interID){
-	id = 'interaction-ta-'+ interID;
+function reset(rgID){
+	id = 'record-ta-'+ rgID;
 	console.log('reset ' + id);
 	ta = document.getElementById(id); // textarea
 	icount++;
-	console.log('reset interaction ' + interID);
-	console.log('interaction lenght ' + ta.value.length);
+	console.log('reset record ' + rgID);
+	console.log('record lenght ' + ta.value.length);
 	console.log('sample lenght ' + sample.length);
 
 	if (ta.value.length > sample.length){
-		switch (interID){
+		switch (rgID){
 			case 'A': 
 				interactions['A'].push(ta.value); break;
 			case 'B': 
@@ -68,7 +69,8 @@ function reset(interID){
 
 function newRecordsGroup(){
 	rgcount++;
-	createRecordBox(rgcount);
+	grpBox = createRecordBox(rgcount);
+	document.getElementById('content').appendChild(grpBox);
 }
 
 function saveSample(){
@@ -78,18 +80,18 @@ function saveSample(){
 }
 
 
-function next(interID){
+function next(rgID){
 
 }
 
-function prev(interID){
+function prev(rgID){
 
 }
 
 function initialize(){
 	console.log("Starting Records");
 	console.log(sample);
-	ta = document.getElementsByClassName("interaction-content");
+	ta = document.getElementsByClassName("record-content");
 	for (i = 0; i < ta.length ; i++) {
 		ta[i].value = sample;
 	}
@@ -97,10 +99,9 @@ function initialize(){
 
 function createRecordBox(groupID){
 	divRecordBox = document.createElement('div');
-	divRecordBox.setAttribute('id','interaction-box-' + groupID);
-	divRecordBox.setAttribute('class','interaction');
-	divRecordBox.innerHTML = '<h2>group'+groupID+'</h2>'
-	document.getElementById("content").appendChild(divRecordBox)
+	divRecordBox.setAttribute('id','record-box-' + groupID);
+	divRecordBox.setAttribute('class','record-grp');
+	return divRecordBox;
 }
 
 window.onload = initialize;
