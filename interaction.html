@@ -7,83 +7,99 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 
-<body>
-	<!-- Sample -->
-    <div id="sample-box">
-        <h3> Sample </h3>
-        <div>
-            <textarea id="sample-ta" cols="30" rows="10"></textarea>
-            <br>
-            <button onclick="saveSample()" >Save</button>
-        </div>
-    </div>
-	<!-- Interaction A -->
-	<div class="interaction" id="interaction-box-A">
-		<div class="interaction-header">
-				<span class="id-label"> ID </span> 
-				<input class="id-input"> </input>
-		</div>
-		<textarea class="interaction-content" id="interaction-ta-A"></textarea>
-		<div class="interaction-control">
-					<button title="Copy" class="control" onclick="copyToClipboard('A')">
-                <img class="icon" src="./copy.svg" alt="Copy"></button>
-			<button  title="New" class="control" onclick="reset('A')">
-                <img class="icon" src="./new.svg" alt="New"></button>
-			<button title="Restore" class="control" onclick="restore('A')">
-			<img class="icon" src="./restore.svg" alt="Restore"></button>
-			<button title="Previous" class="control" onclick="">
-                <img class="icon" src="./prev.svg" alt="Previous">  </button>
-			<button title="Next" class="control" onclick="">
-                <img class="icon" src="./next.svg" alt="Next"> </button>
-		</div>
-	</div>
-	<!-- End  A -->
-	<!-- Interaction B -->
-	<div class="interaction" id="interaction-box-B">
-		<div class="interaction-header">
-				<span class="id-label"> ID </span> 
-				<input class="id-input"> </input>
-		</div>
-		<textarea class="interaction-content" id="interaction-ta-B" ></textarea>
-		<div class="interaction-control">
-			<button title="Copy" class="control" onclick="copyToClipboard('B')">
-                <img class="icon" src="./copy.svg" alt="Copy"></button>
-			<button  title="New" class="control" onclick="reset('B')">
-                <img class="icon" src="./new.svg" alt="New"></button>
-			<button title="Restore" class="control" onclick="restore('B')">
-                <img class="icon" src="./restore.svg" alt="Restore"></button>
-			<button title="Previous" class="control" onclick="">
-                <img class="icon" src="./prev.svg" alt="Previous">  </button>
-			<button title="Next" class="control" onclick="">
-                <img class="icon" src="./next.svg" alt="Next"> </button>
-		</div>
-	</div>
-	<!-- End B -->
-</body>
+	<body>
+		<div id="header">
+			<!-- Sample -->
+			<div id="sample-box">
+				<h3> Sample </h3>
+				<div>
+					<textarea id="sample-ta" cols="30" rows="10"></textarea>
+					<br>
+					<button onclick="saveSample()" >Save</button>
+				</div>
+			</div>
+			<div id="main-controls-box">
+					<button  
+						title="New records group"  
+						id="new-grup-btn" 
+						class="main-control" 
+						onclick="newRecordsGroup()">
+						<img class="icon" src="./new.svg" alt="New"></button>
+				
+			</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="interaction.js"> </script>
-<script >
+		</div>
+
+		<div id="content">
+			<!-- Interaction A -->
+			<div class="interaction" id="interaction-box-A">
+				<div class="interaction-header">
+					<span class="id-label"> ID </span> 
+					<input class="id-input"> </input>
+				</div>
+				<textarea class="interaction-content" id="interaction-ta-A"></textarea>
+				<div class="interaction-control">
+					<button title="Copy" class="control" onclick="copyToClipboard('A')">
+						<img class="icon" src="./copy.svg" alt="Copy"></button>
+					<button  title="New" class="control" onclick="reset('A')">
+						<img class="icon" src="./new.svg" alt="New"></button>
+					<button title="Restore" class="control" onclick="restore('A')">
+						<img class="icon" src="./restore.svg" alt="Restore"></button>
+					<button title="Previous" class="control" onclick="">
+						<img class="icon" src="./prev.svg" alt="Previous">  </button>
+					<button title="Next" class="control" onclick="">
+						<img class="icon" src="./next.svg" alt="Next"> </button>
+				</div>
+			</div>
+			<!-- End  A -->
+			<!-- Interaction B -->
+			<div class="interaction" id="interaction-box-B">
+				<div class="interaction-header">
+					<span class="id-label"> ID </span> 
+					<input class="id-input"> </input>
+				</div>
+				<textarea class="interaction-content" id="interaction-ta-B" ></textarea>
+				<div class="interaction-control">
+					<button title="Copy" class="control" onclick="copyToClipboard('B')">
+						<img class="icon" src="./copy.svg" alt="Copy"></button>
+					<button  title="New" class="control" onclick="reset('B')">
+						<img class="icon" src="./new.svg" alt="New"></button>
+					<button title="Restore" class="control" onclick="restore('B')">
+						<img class="icon" src="./restore.svg" alt="Restore"></button>
+					<button title="Previous" class="control" onclick="">
+						<img class="icon" src="./prev.svg" alt="Previous">  </button>
+					<button title="Next" class="control" onclick="">
+						<img class="icon" src="./next.svg" alt="Next"> </button>
+				</div>
+			</div>
+			<!-- End B -->
+		</div>
+
+	</body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="interaction.js"> </script>
+	<script >
 $(
-    function (){
-        
-        $( "#sample-box" ).accordion({ active:false, collapsible: true });
-        var idSet = [ 'A', 'B'];
-        for (var i = 0, len = idSet.length; i < len; i++) {
-            boxid = "#interaction-box-" + idSet[i];
-            taid  = "#interaction-ta-"  + idSet[i];
-            console.log("init " + boxid);
-            console.log(taid + "init "  );
-            $( boxid ).resizable({ handles: "n"});
-            $( taid ).resizable({ alsoResize: boxid });
-            $( boxid ).draggable();
-            $( boxid ).click(function(){
-                    bringToFront(idSet[i]);
-            });
-        }
-    }
+	function (){
+
+	$( "#sample-box" ).accordion({ active:false, collapsible: true });
+	var idSet = [ 'A', 'B'];
+	for (var i = 0, len = idSet.length; i < len; i++) {
+		boxid = "#interaction-box-" + idSet[i];
+		taid  = "#interaction-ta-"  + idSet[i];
+		console.log("init " + boxid);
+		console.log(taid + "init "  );
+		$( boxid ).resizable({ handles: "n"});
+		$( taid ).resizable({ alsoResize: boxid });
+		$( boxid ).draggable();
+		$( boxid ).click(function(){
+			bringToFront(idSet[i]);
+		});
+	}
+	}
 );
-</script>
+	</script>
 </html>
-	<!-- vim: set ft=html ts=4 sw=4 -->
+<!--vim:set sts=2 ts=4 sw=4 noet-->

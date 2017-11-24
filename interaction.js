@@ -1,4 +1,5 @@
 
+var rgcount = 0; 
 var sample = "Sample:";
 
 var groupSet = [];
@@ -63,7 +64,11 @@ function reset(interID){
 		}
 	}
 	ta.value = sample;
+}
 
+function newRecordsGroup(){
+	rgcount++;
+	createRecordBox(rgcount);
 }
 
 function saveSample(){
@@ -90,4 +95,14 @@ function initialize(){
 	}
 }
 
-	window.onload = initialize;
+function createRecordBox(groupID){
+	divRecordBox = document.createElement('div');
+	divRecordBox.setAttribute('id','interaction-box-' + groupID);
+	divRecordBox.setAttribute('class','interaction');
+	divRecordBox.innerHTML = '<h2>group'+groupID+'</h2>'
+	document.getElementById("content").appendChild(divRecordBox)
+}
+
+window.onload = initialize;
+
+// vim:set sw=4 ts=4 sts=2 noet:
