@@ -1,106 +1,92 @@
 <html>
-	<head>
-		<title>Interactions</title>
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="./favicon.png">
-		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
+    <head>
+        <title>Interactions</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="./favicon.png">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
 
-	<body>
-		<div id="header">
-			<!-- Sample -->
-			<div id="sample-box">
-				<h3> Sample </h3>
-				<div>
-					<textarea id="sample-ta" cols="30" rows="10"></textarea>
-					<br>
-					<button onclick="saveSample()" >Save</button>
-				</div>
-			</div>
-			<div id="main-controls-box">
-					<button  
-						title="New records group"  
-						id="new-grup-btn" 
-						class="main-control" 
-						onclick="newRecordsGroup()">
-						<img class="icon" src="./new.svg" alt="New"></button>
-				
-			</div>
+    <body>
+        <div id="header">
+            <!-- Sample -->
+            <div id="sample-box">
+                <h3> Sample </h3>
+                <div>
+                    <textarea id="sample-ta" cols="30" rows="10"></textarea>
+                    <br>
+                    <div id="main-controls-box">
+                        <button onclick="saveSample()" class="control ">Save</button>
+                        <button 
+                            title="New records group" id="new-grup-btn"
+                            class="main-control control" onclick="newRecordsGroup()"
+                            ><img class="icon" src="./new.svg" alt="New"
+                        ></button>
+                    </div>
+                </div>
+            </div>
 
-		</div>
+        </div>
+        <div id="content">
+            <!-- Interaction A -->
+            <div class="record-grp" id="record-box-A">
+                <div class="record-header">
+                    <span class="id-label"> ID </span> 
+                    <input class="id-input"> </input>
+                </div>
+                <textarea class="record-content" id="record-ta-A"></textarea>
+                <div class="record-control">
+                    <button title="Copy" class="control"
+                        onclick="copyToClipboard('A')"
+                        ><img class="icon" src="./copy.svg" alt="Copy"
+                    ></button
+                    ><button title="New" class="control"
+                        onclick="reset('A')"
+                        ><img class="icon" src="./new.svg" alt="New"
+                    ></button
+                    ><button title="Restore" class="control"
+                        onclick="restore('A')"
+                        ><img class="icon" src="./restore.svg" alt="Restore"
+                    ></button
+                    ><button title="Previous" class="control"
+                        onclick=""
+                        ><img class="icon" src="./prev.svg" alt="Previous"
+                    ></button
+                    ><button title="Next" class="control"
+                        onclick=""
+                        ><img class="icon" src="./next.svg" alt="Next"
+                    ></button>
+                </div>
+            </div>
+            <!-- End  A -->
+        </div>
 
-		<div id="content">
-			<!-- Interaction A -->
-			<div class="record-grp" id="record-box-A">
-				<div class="record-header">
-					<span class="id-label"> ID </span> 
-					<input class="id-input"> </input>
-				</div>
-				<textarea class="record-content" id="record-ta-A"></textarea>
-				<div class="record-control">
-					<button title="Copy" class="control" onclick="copyToClipboard('A')">
-						<img class="icon" src="./copy.svg" alt="Copy"></button>
-					<button  title="New" class="control" onclick="reset('A')">
-						<img class="icon" src="./new.svg" alt="New"></button>
-					<button title="Restore" class="control" onclick="restore('A')">
-						<img class="icon" src="./restore.svg" alt="Restore"></button>
-					<button title="Previous" class="control" onclick="">
-						<img class="icon" src="./prev.svg" alt="Previous">  </button>
-					<button title="Next" class="control" onclick="">
-						<img class="icon" src="./next.svg" alt="Next"> </button>
-				</div>
-			</div>
-			<!-- End  A -->
-			<!-- Interaction B -->
-			<div class="record-grp" id="record-box-B">
-				<div class="record-header">
-					<span class="id-label"> ID </span> 
-					<input class="id-input"> </input>
-				</div>
-				<textarea class="record-content" id="record-ta-B"></textarea>
-				<div class="record-control">
-					<button title="Copy" class="control" onclick="copyToClipboard('B')">
-						<img class="icon" src="./copy.svg" alt="Copy"></button>
-					<button  title="New" class="control" onclick="reset('B')">
-						<img class="icon" src="./new.svg" alt="New"></button>
-					<button title="Restore" class="control" onclick="restore('B')">
-						<img class="icon" src="./restore.svg" alt="Restore"></button>
-					<button title="Previous" class="control" onclick="">
-						<img class="icon" src="./prev.svg" alt="Previous">  </button>
-					<button title="Next" class="control" onclick="">
-						<img class="icon" src="./next.svg" alt="Next"> </button>
-				</div>
-			</div>
-			<!-- End B -->
-		</div>
+    </body>
 
-	</body>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="records.js"> </script>
-	<script >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="records.js"> </script>
+    <script >
 $(
-	function (){
+    function (){
 
-	$( "#sample-box" ).accordion({ active:false, collapsible: true });
-	var idSet = [ 'A', 'B'];
-	for (var i = 0, len = idSet.length; i < len; i++) {
-        id =  idSet[i];
-        console.log("jquerey for " + id);
-			boxid = "#record-box-" + idSet[i];
-		taid  = "#record-ta-"  + idSet[i];
-		console.log("init " + boxid);
-		console.log(taid + "init "  );
-		$( boxid ).resizable({ handles: "n"});
-		$( taid ).resizable({ alsoResize: boxid });
-		$( boxid ).draggable();
-        document.getElementById("record-box-" + idSet[i])
-				.onclick =  bringToFront(id);
-	}
-	}
+    $( "#sample-box" ).accordion({ active:false, collapsible: true });
+    var idSet = [ 'A'];
+        for (var i = 0, len = idSet.length; i < len; i++) {
+            id =  idSet[i];
+            console.log("jquerey for " + id);
+                boxid = "#record-box-" + idSet[i];
+            taid  = "#record-ta-"  + idSet[i];
+            console.log("init " + boxid);
+            console.log(taid + "init "  );
+            $( boxid ).resizable({ handles: "n"});
+            $( taid ).resizable({ alsoResize: boxid });
+            $( boxid ).draggable();
+            document.getElementById("record-box-" + idSet[i])
+                    .onclick =  bringToFront(id);
+        }
+    }
 );
-	</script>
+    </script>
 </html>
 <!--vim:set sts=2 ts=4 sw=4 noet-->
