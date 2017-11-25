@@ -89,7 +89,7 @@ $(
 	for (var i = 0, len = idSet.length; i < len; i++) {
         id =  idSet[i];
         console.log("jquerey for " + id);
-		boxid = "#record-box-" + idSet[i];
+			boxid = "#record-box-" + idSet[i];
 		taid  = "#record-ta-"  + idSet[i];
 		console.log("init " + boxid);
 		console.log(taid + "init "  );
@@ -97,10 +97,7 @@ $(
 		$( taid ).resizable({ alsoResize: boxid });
 		$( boxid ).draggable();
         document.getElementById("record-box-" + idSet[i])
-            .onmouseenter =  function (){
-                bringToFront(id.);
-            
-            };
+				.onclick =  bringToFront(id);
 	}
 	}
 );

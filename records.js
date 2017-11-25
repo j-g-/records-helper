@@ -32,13 +32,30 @@ function restore(rgID){
 	ov = interactions[rgID].pop();
 	ta.value = ov;
 }
+
 function bringToFront(rgID){
-	id = 'record-box-'+ rgID;
-	console.log("bring to front " + id)
-	db = document.getElementById(id); //db box
-	db.style.position  = "absolute";
-	db.style.zindex  = "-1";
+	return function(){
+		var ids=['A','B'];
+			for (var i = 0  ; i < ids.length ; i++){
+			var currentid = 'record-box-'+ ids[i];
+			divbox = document.getElementById(currentid); //div record box
+			if (rgID == ids[i]){
+				console.log("bring to front " + currentid)
+				divbox.style.position  = "absolute";
+				divbox.style.zindex  = "10";
+			} else {
+				console.log("send to back " + currentid)
+				divbox.style.position  = "absolute";
+				divbox.style.zindex  = "-1";
+			
+			}
+		
+		}
+	
+	}
 }
+
+
 function copyToClipboard(rgID){
 	id = 'record-ta-'+ rgID;
 	ta = document.getElementById(id); //text area
@@ -91,19 +108,19 @@ function prev(rgID){
 function initialize(){
 	console.log("Starting Records");
 	console.log(sample);
-	ta = document.getElementsByClassName("record-content");
-	for (i = 0; i < ta.length ; i++) {
-		ta[i].value = sample;
+		ta = document.getElementsByClassName("record-content");
+		for (i = 0; i < ta.length ; i++) {
+			ta[i].value = sample;
+		}
 	}
-}
 
-function createRecordBox(groupID){
-	divRecordBox = document.createElement('div');
-	divRecordBox.setAttribute('id','record-box-' + groupID);
-	divRecordBox.setAttribute('class','record-grp');
-	return divRecordBox;
-}
+	function createRecordBox(groupID){
+		divRecordBox = document.createElement('div');
+		divRecordBox.setAttribute('id','record-box-' + groupID);
+		divRecordBox.setAttribute('class','record-grp');
+		return divRecordBox;
+	}
 
-window.onload = initialize;
+	window.onload = initialize;
 
 // vim:set sw=4 ts=4 sts=2 noet:
