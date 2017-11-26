@@ -10,7 +10,7 @@ textarea.record-content{
     border: none;
     display: inline-block;
     width: 100%;
-    min-height: 16em;
+    min-height: 10em;
     max-height: border-box;
     font-family: sans-serif;
     font-size: smaller;
@@ -20,16 +20,17 @@ textarea.record-content{
     font-style: bold;
     font-size: small;
 }
-input.id-label{
+input.id-input{
+    margin: 0px;
+    padding: 0px;
     border: none;
+    font-size: small;
     display: inline-block;
     box-sizing: border-box;
-    font-size: small;
-    background: yellowgreen;
-    height: 24px;
+    height: 1.5em;
 }
 div.record-grp {
-    width: 200px;
+    width: 220px;
     padding: 0.5em;
     margin: 0.5em;
     background: steelblue;
@@ -43,12 +44,19 @@ div.record-header {
     background: darkblue;
     color: white;
 }
+div#main-control-box {
+    margin: 0px;
+    max-height: 32px;
+    min-height: 32px;
+    height: 32px;
+}
 div.record-control {
     margin: 0px;
     padding-top: 4px;
     padding-bottom: 0px;
     max-height: 48px;
 }
+
 button.control{
     background-color: white; /* Green */
     border: 1px solid black;
@@ -60,8 +68,24 @@ button.control{
     font-size: 16px;
     width: 32px;
     height: 32px;
+    max-width: content;
 }
-button.control:hover{
+div#main-control-box{
+    display: flex;
+}
+button.main-control{
+    background-color: white; /* Green */
+    border: 1px solid black;
+    margin: 0;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    min-height: 32px;
+    max-width: content;
+    margin-right:4px;
+}
+button.control:hover,button.main-control:hover{
     outline: 1px solid black;
 }
 svg{

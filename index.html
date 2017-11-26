@@ -19,7 +19,7 @@ function initialize(){
     console.log("init");
     var features = ['left=10',
                     'top=10',
-                    'location=0',
+                    'locationbar=0',
                     'menubar=0',
                     'resizable=1',
                     'scrollbars=1',
@@ -32,7 +32,8 @@ function initialize(){
         './records.html', 
         'Interactions', 
         features.join(','));
-        interactionWindow.focus();
+	interactionWindow.locationbar.visible = false;
+	interactionWindow.focus();
 }
     </script>
     <!-- vim:set sw=4 ts=4 sts=2 noet: -->

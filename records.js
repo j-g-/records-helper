@@ -1,6 +1,7 @@
 
 var rgcount = 0; 
 var sample = "Sample:";
+var dateTime = new Date();
 
 var groupSet = [];
 var groupViewSet = [];
@@ -28,7 +29,10 @@ RecordsGroup.prototype.addRecord = function(record){
 	this.recordSet.push(record)
 }
 
-//Records Group View Prototype
+/*
+ * Records Group View Prototype
+ *
+ */
 function RecordGroupView(groupID){
 	this.groupID = groupID;
 	// create box
@@ -53,7 +57,7 @@ function RecordGroupView(groupID){
 	this.recordTextArea = document.createElement('textarea');
 	this.recordTextArea.setAttribute('id','record-ta-' + groupID);
 	this.recordTextArea.setAttribute('class','record-content');
-    this.recordTextArea.innerText = sample;
+    this.recordTextArea.value = sample;
 	this.divRecordBox.appendChild(this.recordTextArea);
 
 	// create record controls
@@ -70,29 +74,31 @@ function RecordGroupView(groupID){
 	this.newBtn = document.createElement('button');
 	this.newBtn.setAttribute('class','control');
 	this.newBtn.setAttribute('title','New');
+	this.newBtn.setAttribute('onclick', 'newRecord(' + groupID +')');
 	this.newBtn.innerHTML = svgIconSet['new'];
 	this.divControlBox.appendChild(this.newBtn);
-
-	this.restoreBtn = document.createElement('button');
-	this.restoreBtn.setAttribute('class','control');
-	this.restoreBtn.setAttribute('title','Restore');
-	this.restoreBtn.innerHTML = svgIconSet['restore'];
-	this.divControlBox.appendChild(this.restoreBtn);
 
 	this.prevBtn = document.createElement('button');
 	this.prevBtn.setAttribute('class','control');
 	this.prevBtn.setAttribute('title','Prev');
+	this.prevBtn.setAttribute('onclick', 'prev(' + groupID +')');
 	this.prevBtn.innerHTML = svgIconSet['prev'];
 	this.divControlBox.appendChild(this.prevBtn);
 
 	this.nextBtn = document.createElement('button');
 	this.nextBtn.setAttribute('class','control');
 	this.nextBtn.setAttribute('title','Next');
+	this.nextBtn.setAttribute('onclick', 'next(' + groupID +')');
 	this.nextBtn.innerHTML = svgIconSet['next'];
 	this.divControlBox.appendChild(this.nextBtn);
 
 	// add controls
 	this.divRecordBox.appendChild(this.divControlBox);
+}
+RecordGroupView.prototype.refreshDisplayedRecord = function() {
+	var gs =  groupSet[this.groupID];
+	indocTextArea =  document.getElementById('record-ta-'+ this.groupID); // textarea
+	indocTextArea.value =  gs.recordSet[gs.displayedIndex].record;
 }
 RecordGroupView.prototype.getView = function() {
 	return this.divRecordBox;
@@ -100,28 +106,37 @@ RecordGroupView.prototype.getView = function() {
 
 function newRecordsGroup(){
     groupSet[rgcount] = new  RecordsGroup(rgcount);
+	var nr = new Record( 0 , sample );
+	groupSet[rgcount].addRecord(nr);
+	groupSet[rgcount].displayedIndex = 0;
+
 	groupViewSet[rgcount] = new RecordGroupView(rgcount);
 	document.getElementById('content').appendChild(groupViewSet[rgcount].getView());
 
     groupID = rgcount;
-    $(function(){
-            grpBoxID =  '#record-box-' + groupID;
-            console.log("inside: " + grpBoxID);
-            taID =  '#record-ta-' + groupID;
-            console.log("resizable: " + grpBoxID);
-            console.log("resizable: " + taID);
-            $( grpBoxID ).resizable({ handles: "n"});
-            $( taID ).resizable({ alsoResize: grpBoxID });
-            $( grpBoxID ).draggable();
-    });
+	$(function(){
+		grpBoxID =  '#record-box-' + groupID;
+		console.log("inside: " + grpBoxID);
+		taID =  '#record-ta-' + groupID;
+		console.log("resizable: " + grpBoxID);
+		console.log("resizable: " + taID);
+		$( grpBoxID ).resizable({ handles: "n"});
+		$( taID ).resizable({ alsoResize: grpBoxID });
+		$( grpBoxID ).draggable();
+	});
 	rgcount++;
 }
 
 //Record Prototype
-function Record (associatedID, record, dateTime ){
+function Record (associatedID, record ){
 	this.associatedID = associatedID;
-	this.savedAt =  dateTime;
+	this.savedAt =  Date.now();
 	this.record = record;
+}
+
+Record.prototype.update = function (record){
+	this.record = record;
+	this.savedAt =  Date.now();
 }
 
 function restore(rgID){
@@ -139,6 +154,7 @@ function bringToFront(rgID){
 
 
 function copyToClipboard(rgID){
+	saveDiplayedRecord(rgID);
 	id = 'record-ta-'+ rgID;
 	ta = document.getElementById(id); //text area
 	ta.select();
@@ -146,49 +162,79 @@ function copyToClipboard(rgID){
 	console.log("Copied record " + rgID  );
 }
 
-function reset(rgID){
-	id = 'record-ta-'+ rgID;
-	console.log('reset ' + id);
-	ta = document.getElementById(id); // textarea
-	icount++;
-	console.log('reset record ' + rgID);
-	console.log('record lenght ' + ta.value.length);
-	console.log('sample lenght ' + sample.length);
-
-	if (ta.value.length > sample.length){
-		switch (rgID){
-			case 'A': 
-				interactions['A'].push(ta.value); break;
-			case 'B': 
-				interactions['B'].push(ta.value); break;
-		}
+function saveDiplayedRecord(rgID){
+	var rs = groupSet[rgID].recordSet;
+	var gs = groupSet[rgID];
+	ta =  document.getElementById('record-ta-'+ rgID); // textarea
+	if ( ta.value.length != rs[gs.displayedIndex].record.length){ 
+		rs[gs.displayedIndex].record =  ta.value;
+		console.log('Save displayed record for group ' + rgID);
 	}
-	ta.value = sample;
+}
+function newRecord(rgID){
+	var rs = groupSet[rgID].recordSet;
+	var gs = groupSet[rgID];
+	var lastIndex = rs.length -1;
+	ta = document.getElementById('record-ta-'+ rgID); // textarea
+	saveDiplayedRecord(rgID)
+	if (rs[lastIndex].record.length != sample.length){
+		gs.displayedIndex = lastIndex;
+		console.log("new lastIndex " + lastIndex)
+		ta.value = rs[lastIndex].record;
+		saveDiplayedRecord(rgID);
+		lastIndex++;
+		var nr = new Record( lastIndex , sample );
+		gs.addRecord(nr);
+	}
+	ta.value = rs[lastIndex].record;
+	gs.displayedIndex = lastIndex;
 }
 
 
 function saveSample(){
 	ta = document.getElementById("sample-ta");
+	oldSample = sample;
 	sample = ta.value;
-	initialize();
+	for (var i = 0, len = groupSet.length; i < len; i++) {
+		var rs = groupSet[i].recordSet;
+		var li = rs.length - 1;
+		if (rs[li].record.length == oldSample.length){
+			rs[li].record = sample;
+		}
+		groupViewSet[i].refreshDisplayedRecord();
+	}
 }
 
 
 function next(rgID){
-
+	saveDiplayedRecord(rgID);
+	var rs = groupSet[rgID].recordSet;
+	groupSet[rgID].displayedIndex += 1;
+	if(  groupSet[rgID].displayedIndex < rs.length){
+		groupViewSet[rgID].refreshDisplayedRecord();
+	} else {
+		groupSet[rgID].displayedIndex = rs.length -1;
+	}
+	console.log("next " + groupSet[rgID].displayedIndex)
 }
 
 function prev(rgID){
-
+	saveDiplayedRecord(rgID);
+	var rs = groupSet[rgID].recordSet;
+	groupSet[rgID].displayedIndex--;
+	if(groupSet[rgID].displayedIndex > -1){
+		groupViewSet[rgID].refreshDisplayedRecord();
+	} else {
+		groupSet[rgID].displayedIndex = 0;
+	}
+	console.log("prev " + groupSet[rgID].displayedIndex)
 }
 
 function initialize(){
 	console.log("Starting Records");
 	console.log(sample);
-	ta = document.getElementsByClassName("record-content");
-	for (i = 0; i < ta.length ; i++) {
-		ta[i].value = sample;
-	}
+	newRecordsGroup();
+	newRecordsGroup();
 }
 
 
