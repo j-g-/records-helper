@@ -196,6 +196,7 @@ function saveSample(){
 	oldSample = sample;
 	sample = ta.value;
 	for (var i = 0, len = groupSet.length; i < len; i++) {
+		saveDiplayedRecord(i);
 		var rs = groupSet[i].recordSet;
 		var li = rs.length - 1;
 		if (rs[li].record.length == oldSample.length){
