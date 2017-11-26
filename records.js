@@ -5,10 +5,6 @@ var dateTime = new Date();
 
 var groupSet = [];
 var groupViewSet = [];
-var interactions = {
-	'A' :  [],
-	'B' :  [],
-};
 var svgIconSet = {
 	'copy'    : '<img class="icon" src="./copy.svg" alt="Copy">',
 	'new'     : '<img class="icon" src="./new.svg" alt="New">',
@@ -47,8 +43,8 @@ function RecordGroupView(groupID){
 	this.idLabel = document.createElement('label');
 	this.idLabel.setAttribute('class','id-label');
 	this.idLabel.innerText = groupID + '.ID';
-    this.idInput = document.createElement('input');
-    this.idInput.setAttribute('class','id-input');
+	this.idInput = document.createElement('input');
+	this.idInput.setAttribute('class','id-input');
 	this.idLabel.appendChild(this.idInput);
 	this.divRecordHeader.appendChild(this.idLabel);
 	this.divRecordBox.appendChild(this.divRecordHeader);
@@ -57,7 +53,7 @@ function RecordGroupView(groupID){
 	this.recordTextArea = document.createElement('textarea');
 	this.recordTextArea.setAttribute('id','record-ta-' + groupID);
 	this.recordTextArea.setAttribute('class','record-content');
-    this.recordTextArea.value = sample;
+	this.recordTextArea.value = sample;
 	this.divRecordBox.appendChild(this.recordTextArea);
 
 	// create record controls
@@ -105,7 +101,7 @@ RecordGroupView.prototype.getView = function() {
 }
 
 function newRecordsGroup(){
-    groupSet[rgcount] = new  RecordsGroup(rgcount);
+	groupSet[rgcount] = new  RecordsGroup(rgcount);
 	var nr = new Record( 0 , sample );
 	groupSet[rgcount].addRecord(nr);
 	groupSet[rgcount].displayedIndex = 0;
@@ -113,7 +109,7 @@ function newRecordsGroup(){
 	groupViewSet[rgcount] = new RecordGroupView(rgcount);
 	document.getElementById('content').appendChild(groupViewSet[rgcount].getView());
 
-    groupID = rgcount;
+	groupID = rgcount;
 	$(function(){
 		grpBoxID =  '#record-box-' + groupID;
 		console.log("inside: " + grpBoxID);
@@ -147,11 +143,10 @@ function restore(rgID){
 }
 
 function bringToFront(rgID){
-    for (var i = 0  ; i < groupSet.length ; i++){
-        document.getElementById('record-box-'+ i).style.zIndex = (rgID == i)? 1 : 0;
-    }
+	for (var i = 0  ; i < groupSet.length ; i++){
+		document.getElementById('record-box-'+ i).style.zIndex = (rgID == i)? 1 : 0;
+	}
 }
-
 
 function copyToClipboard(rgID){
 	saveDiplayedRecord(rgID);
@@ -206,7 +201,6 @@ function saveSample(){
 	}
 }
 
-
 function next(rgID){
 	saveDiplayedRecord(rgID);
 	var rs = groupSet[rgID].recordSet;
@@ -237,8 +231,6 @@ function initialize(){
 	newRecordsGroup();
 	newRecordsGroup();
 }
-
-
 window.onload = initialize;
 
 // vim:set sw=4 ts=4 sts=2 noet:
