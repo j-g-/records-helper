@@ -1,151 +1,155 @@
 body{
-    padding:0;
-    margin:0;
-    font-family: sans-serif;
-    background: gray;
-    color: greenyellow;
+	padding:0;
+	margin:0;
+	font-family: sans-serif;
+	background: gray;
+	color: greenyellow;
 }
 textarea.record-content{
-    padding: 0.5em;
-    /*display: inline-block;*/
-    align-self: flex-start;
-    width:  100%;
-    box-sizing: border-box;
-    /*width: 98%;*/
-    height: 100%;
-    min-height: 10em;
-    max-height: border-box;
-    font-family: sans-serif;
-    font-size: smaller;
-    resize: none;
+	padding: 0.5em;
+	/*display: inline-block;*/
+	align-self: flex-start;
+	width:  100%;
+	box-sizing: border-box;
+	/*width: 98%;*/
+	height: 100%;
+	min-height: 10em;
+	max-height: border-box;
+	font-family: sans-serif;
+	font-size: smaller;
+	resize: none;
 }
 .id-label{
-    font-style: bold;
-    font-size: small;
+	font-style: bold;
+	font-size: small;
 }
 input.id-input{
-    margin: 0px;
-    margin-left: 4px;
-    padding: 0px 2px 0px 2px;
-    border: none;
-    font-size: small;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 24px;
+	margin: 0px;
+	margin-left: 4px;
+	padding: 0px 2px 0px 2px;
+	border: none;
+	background-color: tomato;
+	font-size: small;
+	display: inline-block;
+	box-sizing: border-box;
+	height: 24px;
 }
 div.record-grp {
-    width: 220px;
-    margin: 0.5em;
-    background: steelblue;
-    color: white;
-    min-height; 225px;
-    min-width; 225px;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    z-index:0;
-    display: flex;
-    flex-direction:column;
-    padding-bottom: 0.3em;
-    border: 1px solid whitesmoke;
+	width: 220px;
+	margin: 0.5em;
+	background: steelblue;
+	color: white;
+	min-height; 225px;
+	min-width; 225px;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	z-index:0;
+	display: flex;
+	flex-direction:column;
+	padding-bottom: 0.3em;
+	border: 1px solid whitesmoke;
 }
 div.record-header {
-    display; flex;
-    width:  100%;
-    box-sizing: border-box;
-    align-self: flex-start;
-    padding: 4px;
-    background: black;
-    color: white;
+	display; flex;
+	width:  100%;
+	box-sizing: border-box;
+	align-self: flex-start;
+	padding: 4px;
+	background: black;
+	color: white;
 }
 div.saved-date-box {
-    width: 100%;
-    align-self: flex-end;
-    padding: 0px;
-    margin: 0px 4px 0px 4px;
-    font-size: smaller;
-    text-align: right;
-    color: white;
+	width: 100%;
+	align-self: flex-end;
+	padding: 0px;
+	margin: 0px 4px 0px 4px;
+	font-size: smaller;
+	text-align: right;
+	color: white;
 }
 div#settings-box {
-    position: sticky;
-    z-index: 90;
+	position: sticky;
+	z-index: 90;
 }
 div#main-control-box {
-    margin: 0px;
-    max-height: 32px;
-    min-height: 32px;
-    height: 32px;
+	margin: 0px;
+	max-height: 32px;
+	min-height: 32px;
+	height: 32px;
 }
 div.record-control {
-    display: flex;
-    padding-left:0.3em;
-    max-height: 48px;
-    width: 100%;
-    box-sizing: border-box;
-    align-self: flex-end;
-    align-items: flex-start;
+	display: flex;
+	padding-left:0.3em;
+	max-height: 48px;
+	width: 100%;
+	box-sizing: border-box;
+	align-self: flex-end;
+	align-items: flex-start;
 }
 
 button.control{
-    background-color: white; /* Green */
-    border: 1px solid black;
-    margin: 0.1em;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    min-width: 32px;
-    min-height: 32px;
-    max-width: content;
-    align-self: flex-start;
+	background-color: white; /* Green */
+	border: 1px solid black;
+	margin: 0.1em;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	min-width: 32px;
+	min-height: 32px;
+	max-width: content;
+	align-self: flex-start;
 }
 span.position-box {
-    color: white;
-    text-align: right;
-    width: 100%;
-    font-size: large;
-    font-style: italic;
-    padding-right: 0.5em;
+	color: white;
+	text-align: right;
+	width: 100%;
+	font-size: large;
+	font-style: italic;
+	padding-right: 0.5em;
 }
 div#main-control-box{
-    display: flex;
+	display: flex;
 }
 button.main-control{
-    background-color: white; /* Green */
-    border: 1px solid black;
-    margin: 0px;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1em;
-    min-height: 32px;
-    min-width: 32px;
-    max-width: content;
-    margin-right:0.3em;
+	background-color: white; /* Green */
+	border: 1px solid black;
+	margin: 0px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1em;
+	min-height: 32px;
+	min-width: 32px;
+	max-width: content;
+	margin-right:0.3em;
 }
 button.control:hover,button.main-control:hover{
-    outline: 1px solid black;
+	outline: 1px solid black;
 }
 svg{
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 0px;
-    padding: 0px;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
 }
 img.icon{
-    width: 16px;
-    height: 16px;
+	width: 16px;
+	height: 16px;
 }
 p{
-    margin: 0px;
-    padding: 0px;
-    text-align: inherit;
+	margin: 0px;
+	padding: 0px;
+	text-align: inherit;
 }
 .ui-accordion-content{
-    z-index: 90;
+	z-index: 90;
 }
+
+/* vim:set noet sw=4 ts=4 sts=2 */
+

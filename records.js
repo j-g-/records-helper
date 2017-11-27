@@ -41,8 +41,9 @@ function RecordGroupView(groupID){
 	this.idLabel.setAttribute('class','id-label');
 	this.idLabel.innerText = (groupID + 1 ) + ' ID';
 	this.idInput = document.createElement('input');
-	this.idInput.setAttribute('id','id-in-'+groupID);
+	this.idInput.setAttribute('id','id-input-'+groupID);
 	this.idInput.setAttribute('class','id-input');
+	this.idInput.setAttribute('oninput','checkIdInput('+groupID+')');
 	this.idLabel.appendChild(this.idInput);
 	this.divRecordHeader.appendChild(this.idLabel);
 	this.divRecordBox.appendChild(this.divRecordHeader);
@@ -102,11 +103,12 @@ function RecordGroupView(groupID){
 	// add controls
 	this.divRecordBox.appendChild(this.divControlBox);
 }
+
 RecordGroupView.prototype.refreshDisplayedRecord = function() {
 	var gs              = groupSet[this.groupID];
 	indocTextArea       = document.getElementById('record-ta-'+ this.groupID);
 	indocTextArea.value = gs.recordSet[gs.displayedIndex].record;
-	indocIdInput        = document.getElementById('id-in-'+ this.groupID);
+	indocIdInput        = document.getElementById('id-input-'+ this.groupID);
 	indocIdInput.value  = gs.recordSet[gs.displayedIndex].associatedID ;
 	indocDate        = document.getElementById('sv-date-'+ this.groupID);
 	indocPos        = document.getElementById('pos-box-'+ this.groupID);
@@ -114,8 +116,8 @@ RecordGroupView.prototype.refreshDisplayedRecord = function() {
 	var ds = d.toLocaleTimeString();
 	indocDate.innerHTML = '<p> Saved: <i>'+ds+'<i></p>'
 	indocPos.innerText = (gs.displayedIndex + 1)+'/'+ gs.recordSet.length;
-
 }
+
 RecordGroupView.prototype.getView = function() {
 	return this.divRecordBox;
 }
@@ -189,7 +191,7 @@ function saveDiplayedRecord(rgID){
 	var rs = groupSet[rgID].recordSet;
 	var gs = groupSet[rgID];
 	ta =  document.getElementById('record-ta-'+ rgID); // textarea
-	idInput =  document.getElementById('id-in-'+ rgID); // textarea
+	idInput =  document.getElementById('id-input-'+ rgID); // textarea
 	if ( ta.value.length != rs[gs.displayedIndex].record.length){ 
 		rs[gs.displayedIndex].setRecord(ta.value);
 	}
@@ -238,6 +240,14 @@ function next(rgID){
 	}
 }
 
+function checkIdInput(rgID){
+	idInput = document.getElementById('id-input-'+ rgID);
+	if (idInput.value.length > 0){
+		idInput.style.background = 'palegreen';
+	} else {
+		idInput.style.background = 'tomato';
+	}
+}
 function prev(rgID){
 	saveDiplayedRecord(rgID);
 	var rs = groupSet[rgID].recordSet;
