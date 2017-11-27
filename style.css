@@ -52,6 +52,10 @@ div.saved-date-box {
     text-align: right;
     color: white;
 }
+div#settings-box {
+    position: sticky;
+    z-index: 90;
+}
 div#main-control-box {
     margin: 0px;
     max-height: 32px;
@@ -113,4 +117,8 @@ p{
     margin: 0px;
     padding: 0px;
     text-align: inherit;
+}
+.ui-accordion-content{
+
+    z-index: 90;
 }

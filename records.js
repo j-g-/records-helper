@@ -39,7 +39,7 @@ function RecordGroupView(groupID){
 	this.divRecordHeader.setAttribute('class','record-header');
 	this.idLabel = document.createElement('label');
 	this.idLabel.setAttribute('class','id-label');
-	this.idLabel.innerText = groupID + '.ID';
+	this.idLabel.innerText = (groupID + 1 ) + ' ID';
 	this.idInput = document.createElement('input');
 	this.idInput.setAttribute('id','id-in-'+groupID);
 	this.idInput.setAttribute('class','id-input');
@@ -67,7 +67,7 @@ function RecordGroupView(groupID){
 	// add buttons
 	this.copyBtn = document.createElement('button');
 	this.copyBtn.setAttribute('class','control');
-	this.copyBtn.setAttribute('title','Save');
+	this.copyBtn.setAttribute('title','Copy');
 	this.copyBtn.setAttribute('onclick', 'copyToClipboard(' + groupID +')');
 	this.copyBtn.innerHTML = svgIconSet['copy'];
 	this.divControlBox.appendChild(this.copyBtn);

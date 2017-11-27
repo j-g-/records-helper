@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Interactions</title>
+        <title>Records Helper</title>
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="./favicon.png">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
@@ -10,8 +10,8 @@
     <body>
         <div id="header">
             <!-- Sample -->
-            <div id="sample-box"
-                ><h3> Sample </h3
+            <div id="settings-box"
+                ><h3> Settings </h3
                 ><div><textarea id="sample-ta" cols="30" rows="10"></textarea
                     ><div id="main-control-box"
                         ><button onclick="saveSample()" class="main-control">Save</button><button 
@@ -31,7 +31,7 @@
     <script >
 $(
     function (){
-    $( "#sample-box" ).accordion({ active:false, collapsible: true });
+    $( "#settings-box" ).accordion({ active:false, collapsible: true });
     }
 );
     </script>
