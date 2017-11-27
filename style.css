@@ -121,6 +121,7 @@ button.main-control{
     text-decoration: none;
     font-size: 1em;
     min-height: 32px;
+    min-width: 32px;
     max-width: content;
     margin-right:0.3em;
 }
@@ -146,6 +147,5 @@ p{
     text-align: inherit;
 }
 .ui-accordion-content{
-
     z-index: 90;
 }
