@@ -25,10 +25,7 @@ RecordsGroup.prototype.addRecord = function(record){
 	this.recordSet.push(record)
 }
 
-/*
- * Records Group View Prototype
- *
- */
+/* Records Group View Prototype */
 function RecordGroupView(groupID){
 	this.groupID = groupID;
 	// create box
@@ -44,6 +41,7 @@ function RecordGroupView(groupID){
 	this.idLabel.setAttribute('class','id-label');
 	this.idLabel.innerText = groupID + '.ID';
 	this.idInput = document.createElement('input');
+	this.idInput.setAttribute('id','id-in-'+groupID);
 	this.idInput.setAttribute('class','id-input');
 	this.idLabel.appendChild(this.idInput);
 	this.divRecordHeader.appendChild(this.idLabel);
@@ -55,6 +53,13 @@ function RecordGroupView(groupID){
 	this.recordTextArea.setAttribute('class','record-content');
 	this.recordTextArea.value = sample;
 	this.divRecordBox.appendChild(this.recordTextArea);
+
+    // add saved date
+    this.saveTimeBox = document.createElement('div');
+    this.saveTimeBox.setAttribute('class', 'saved-date-box');
+    this.saveTimeBox.setAttribute('id', 'sv-date-'+ groupID);
+    this.saveTimeBox.innerHTML= "<p>No date</p>";
+	this.divRecordBox.appendChild(this.saveTimeBox);
 
 	// create record controls
 	this.divControlBox = document.createElement('div');
@@ -92,17 +97,33 @@ function RecordGroupView(groupID){
 	this.divRecordBox.appendChild(this.divControlBox);
 }
 RecordGroupView.prototype.refreshDisplayedRecord = function() {
-	var gs =  groupSet[this.groupID];
-	indocTextArea =  document.getElementById('record-ta-'+ this.groupID); // textarea
-	indocTextArea.value =  gs.recordSet[gs.displayedIndex].record;
+	var gs              = groupSet[this.groupID];
+	indocTextArea       = document.getElementById('record-ta-'+ this.groupID);
+	indocTextArea.value = gs.recordSet[gs.displayedIndex].record;
+	indocIdInput        = document.getElementById('id-in-'+ this.groupID);
+	indocIdInput.value  = gs.recordSet[gs.displayedIndex].associatedID ;
+	indocDate        = document.getElementById('sv-date-'+ this.groupID);
+    var d = new Date(gs.recordSet[gs.displayedIndex].savedAt);
+    var ds = d.toLocaleTimeString();
+    indocDate.innerHTML = '<p> Saved: <i>'+ds+'<i></p>'
+    
 }
 RecordGroupView.prototype.getView = function() {
 	return this.divRecordBox;
 }
 
+ RecordGroupView.prototype.placeBellow = function(rgID){
+	 var refid = 'record-box-' + rgID;
+	 var boxid = 'record-box-' + this.groupID;
+	 var rec = document.getElementById(refid).getBoundingClientRect();
+	 var left = document.getElementById(refid).style.left;
+	 var box = document.getElementById(boxid).style.top = rec.bottom + 4;
+	 var box = document.getElementById(boxid).style.left = left;
+}
+// Creates new RecordGroup and corresponding RecordGroupView
 function newRecordsGroup(){
 	groupSet[rgcount] = new  RecordsGroup(rgcount);
-	var nr = new Record( 0 , sample );
+	var nr = new Record( "" , sample );
 	groupSet[rgcount].addRecord(nr);
 	groupSet[rgcount].displayedIndex = 0;
 
@@ -112,10 +133,7 @@ function newRecordsGroup(){
 	groupID = rgcount;
 	$(function(){
 		grpBoxID =  '#record-box-' + groupID;
-		console.log("inside: " + grpBoxID);
 		taID =  '#record-ta-' + groupID;
-		console.log("resizable: " + grpBoxID);
-		console.log("resizable: " + taID);
 		$( grpBoxID ).resizable({ handles: "n"});
 		$( taID ).resizable({ alsoResize: grpBoxID });
 		$( grpBoxID ).draggable();
@@ -123,23 +141,19 @@ function newRecordsGroup(){
 	rgcount++;
 }
 
-//Record Prototype
+/* Record Prototype */
 function Record (associatedID, record ){
 	this.associatedID = associatedID;
 	this.savedAt =  Date.now();
 	this.record = record;
 }
-
-Record.prototype.update = function (record){
-	this.record = record;
-	this.savedAt =  Date.now();
+Record.prototype.setAssociatedID = function (aid){
+	this.associatedID = aid;
 }
 
-function restore(rgID){
-	id = 'record-ta-'+ rgID;
-	ta = document.getElementById(id); //text area
-	ov = interactions[rgID].pop();
-	ta.value = ov;
+Record.prototype.setRecord = function (record){
+	this.record = record;
+	this.savedAt =  Date.now();
 }
 
 function bringToFront(rgID){
@@ -161,28 +175,26 @@ function saveDiplayedRecord(rgID){
 	var rs = groupSet[rgID].recordSet;
 	var gs = groupSet[rgID];
 	ta =  document.getElementById('record-ta-'+ rgID); // textarea
+	idInput =  document.getElementById('id-in-'+ rgID); // textarea
 	if ( ta.value.length != rs[gs.displayedIndex].record.length){ 
-		rs[gs.displayedIndex].record =  ta.value;
-		console.log('Save displayed record for group ' + rgID);
+		rs[gs.displayedIndex].setRecord(ta.value);
 	}
+    if(idInput.value.length > 0){
+        rs[gs.displayedIndex].setAssociatedID(idInput.value);
+    }
 }
 function newRecord(rgID){
 	var rs = groupSet[rgID].recordSet;
 	var gs = groupSet[rgID];
 	var lastIndex = rs.length -1;
-	ta = document.getElementById('record-ta-'+ rgID); // textarea
 	saveDiplayedRecord(rgID)
+    gs.displayedIndex = lastIndex;
 	if (rs[lastIndex].record.length != sample.length){
-		gs.displayedIndex = lastIndex;
-		console.log("new lastIndex " + lastIndex)
-		ta.value = rs[lastIndex].record;
-		saveDiplayedRecord(rgID);
-		lastIndex++;
-		var nr = new Record( lastIndex , sample );
+        gs.displayedIndex += 1;
+		var nr = new Record( "" , sample );
 		gs.addRecord(nr);
 	}
-	ta.value = rs[lastIndex].record;
-	gs.displayedIndex = lastIndex;
+    groupViewSet[rgID].refreshDisplayedRecord();
 }
 
 
@@ -210,7 +222,6 @@ function next(rgID){
 	} else {
 		groupSet[rgID].displayedIndex = rs.length -1;
 	}
-	console.log("next " + groupSet[rgID].displayedIndex)
 }
 
 function prev(rgID){
@@ -222,14 +233,13 @@ function prev(rgID){
 	} else {
 		groupSet[rgID].displayedIndex = 0;
 	}
-	console.log("prev " + groupSet[rgID].displayedIndex)
 }
 
 function initialize(){
 	console.log("Starting Records");
-	console.log(sample);
 	newRecordsGroup();
 	newRecordsGroup();
+	groupViewSet[1].placeBellow(0);
 }
 window.onload = initialize;
 

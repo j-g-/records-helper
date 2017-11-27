@@ -11,6 +11,7 @@ textarea.record-content{
     display: inline-block;
     width: 100%;
     min-height: 10em;
+    margin: 2px 0px 0px 2px;
     max-height: border-box;
     font-family: sans-serif;
     font-size: smaller;
@@ -22,16 +23,16 @@ textarea.record-content{
 }
 input.id-input{
     margin: 0px;
-    padding: 0px;
+    margin-left: 4px;
+    padding: 0px 2px 0px 2px;
     border: none;
     font-size: small;
     display: inline-block;
     box-sizing: border-box;
-    height: 1.5em;
+    height: 24px;
 }
 div.record-grp {
     width: 220px;
-    padding: 0.5em;
     margin: 0.5em;
     background: steelblue;
     color: white;
@@ -41,7 +42,14 @@ div.record-grp {
 }
 div.record-header {
     padding: 4px;
-    background: darkblue;
+    background: black;
+    color: white;
+}
+div.saved-date-box {
+    padding: 0px;
+    margin: 0px 4px 0px 4px;
+    font-size: smaller;
+    text-align: right;
     color: white;
 }
 div#main-control-box {
@@ -100,4 +108,9 @@ svg{
 img.icon{
     width: 16px;
     height: 16px;
+}
+p{
+    margin: 0px;
+    padding: 0px;
+    text-align: inherit;
 }
