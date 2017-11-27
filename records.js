@@ -54,11 +54,11 @@ function RecordGroupView(groupID){
 	this.recordTextArea.value = sample;
 	this.divRecordBox.appendChild(this.recordTextArea);
 
-    // add saved date
-    this.saveTimeBox = document.createElement('div');
-    this.saveTimeBox.setAttribute('class', 'saved-date-box');
-    this.saveTimeBox.setAttribute('id', 'sv-date-'+ groupID);
-    this.saveTimeBox.innerHTML= "<p>No date</p>";
+	// add saved date
+	this.saveTimeBox = document.createElement('div');
+	this.saveTimeBox.setAttribute('class', 'saved-date-box');
+	this.saveTimeBox.setAttribute('id', 'sv-date-'+ groupID);
+	this.saveTimeBox.innerHTML= "<p>No date</p>";
 	this.divRecordBox.appendChild(this.saveTimeBox);
 
 	// create record controls
@@ -93,6 +93,12 @@ function RecordGroupView(groupID){
 	this.nextBtn.innerHTML = svgIconSet['next'];
 	this.divControlBox.appendChild(this.nextBtn);
 
+	this.posBox = document.createElement('span');
+	this.posBox.setAttribute('class','position-box');
+	this.posBox.setAttribute('id','pos-box-' + groupID);
+	this.posBox.innerHTML = "n/n";
+	this.divControlBox.appendChild(this.posBox);
+
 	// add controls
 	this.divRecordBox.appendChild(this.divControlBox);
 }
@@ -103,22 +109,24 @@ RecordGroupView.prototype.refreshDisplayedRecord = function() {
 	indocIdInput        = document.getElementById('id-in-'+ this.groupID);
 	indocIdInput.value  = gs.recordSet[gs.displayedIndex].associatedID ;
 	indocDate        = document.getElementById('sv-date-'+ this.groupID);
-    var d = new Date(gs.recordSet[gs.displayedIndex].savedAt);
-    var ds = d.toLocaleTimeString();
-    indocDate.innerHTML = '<p> Saved: <i>'+ds+'<i></p>'
-    
+	indocPos        = document.getElementById('pos-box-'+ this.groupID);
+	var d = new Date(gs.recordSet[gs.displayedIndex].savedAt);
+	var ds = d.toLocaleTimeString();
+	indocDate.innerHTML = '<p> Saved: <i>'+ds+'<i></p>'
+	indocPos.innerText = (gs.displayedIndex + 1)+'/'+ gs.recordSet.length;
+
 }
 RecordGroupView.prototype.getView = function() {
 	return this.divRecordBox;
 }
 
- RecordGroupView.prototype.placeBellow = function(rgID){
-	 var refid = 'record-box-' + rgID;
-	 var boxid = 'record-box-' + this.groupID;
-	 var rec = document.getElementById(refid).getBoundingClientRect();
-	 var left = document.getElementById(refid).style.left;
-	 var box = document.getElementById(boxid).style.top = rec.bottom + 4;
-	 var box = document.getElementById(boxid).style.left = left;
+RecordGroupView.prototype.placeBellow = function(rgID){
+	var refid = 'record-box-' + rgID;
+	var boxid = 'record-box-' + this.groupID;
+	var rec = document.getElementById(refid).getBoundingClientRect();
+	var left = document.getElementById(refid).style.left;
+	var box = document.getElementById(boxid).style.top = rec.bottom + 4;
+	var box = document.getElementById(boxid).style.left = left;
 }
 // Creates new RecordGroup and corresponding RecordGroupView
 function newRecordsGroup(){
@@ -133,9 +141,15 @@ function newRecordsGroup(){
 	groupID = rgcount;
 	$(function(){
 		grpBoxID =  '#record-box-' + groupID;
-		taID =  '#record-ta-' + groupID;
-		$( grpBoxID ).resizable({ handles: "n"});
-		$( taID ).resizable({ alsoResize: grpBoxID });
+		//taID =  '#record-ta-' + groupID;
+		$( grpBoxID ).resizable(
+			{ 
+				handles   : "se",
+				minHeight : 225,
+				minWidth  : 225
+			}
+		);
+		//$( taID ).resizable({ alsoResize: grpBoxID });
 		$( grpBoxID ).draggable();
 	});
 	rgcount++;
@@ -179,22 +193,22 @@ function saveDiplayedRecord(rgID){
 	if ( ta.value.length != rs[gs.displayedIndex].record.length){ 
 		rs[gs.displayedIndex].setRecord(ta.value);
 	}
-    if(idInput.value.length > 0){
-        rs[gs.displayedIndex].setAssociatedID(idInput.value);
-    }
+	if(idInput.value.length > 0){
+		rs[gs.displayedIndex].setAssociatedID(idInput.value);
+	}
 }
 function newRecord(rgID){
 	var rs = groupSet[rgID].recordSet;
 	var gs = groupSet[rgID];
 	var lastIndex = rs.length -1;
 	saveDiplayedRecord(rgID)
-    gs.displayedIndex = lastIndex;
+	gs.displayedIndex = lastIndex;
 	if (rs[lastIndex].record.length != sample.length){
-        gs.displayedIndex += 1;
+		gs.displayedIndex += 1;
 		var nr = new Record( "" , sample );
 		gs.addRecord(nr);
 	}
-    groupViewSet[rgID].refreshDisplayedRecord();
+	groupViewSet[rgID].refreshDisplayedRecord();
 }
 
 
