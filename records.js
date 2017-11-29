@@ -20,11 +20,33 @@ function  RecordsGroup (gid){
 	this.gid = gid;
 	this.displayedIndex = 0;
 	this.recordSet = [];
+	this.viewInfo = {
+		x : 0,
+		y: 0,
+		width: 0,
+		height: 0,
+	};
 }
 RecordsGroup.prototype.addRecord = function(record){
 	this.recordSet.push(record)
 }
 
+RecordsGroup.prototype.saveViewInfo= function(){
+	var displayedDiv = document.getElementById('record-box-'+ this.gid);
+	if (displayedDiv != null){
+		var bb = displayedDiv.getBoundingClientRect();
+		this.viewInfo.x = bb.left;
+		this.viewInfo.y = bb.top;
+		this.viewInfo.width = bb.width;
+		this.viewInfo.height = bb.height;
+		ts = [
+			"Group ", this.gid,
+			" position(", this.viewInfo.x, ",", this.viewInfo.y, ")",
+			" dimensions(", this.viewInfo.width, ",", this.viewInfo.height, ")"
+		].join("");
+		console.log(ts);
+	}
+} 
 /* Records Group View Prototype */
 function RecordGroupView(groupID){
 	this.groupID = groupID;
@@ -116,6 +138,7 @@ RecordGroupView.prototype.refreshDisplayedRecord = function() {
 	var ds = d.toLocaleTimeString();
 	indocDate.innerHTML = '<p> Saved: <i>'+ds+'<i></p>'
 	indocPos.innerText = (gs.displayedIndex + 1)+'/'+ gs.recordSet.length;
+	checkIdInput(this.groupID);
 }
 
 RecordGroupView.prototype.getView = function() {
@@ -154,6 +177,7 @@ function newRecordsGroup(){
 		//$( taID ).resizable({ alsoResize: grpBoxID });
 		$( grpBoxID ).draggable();
 	});
+	checkIdInput(groupID);
 	rgcount++;
 }
 
@@ -163,6 +187,7 @@ function Record (associatedID, record ){
 	this.savedAt =  Date.now();
 	this.record = record;
 }
+
 Record.prototype.setAssociatedID = function (aid){
 	this.associatedID = aid;
 }
@@ -242,7 +267,8 @@ function next(rgID){
 
 function checkIdInput(rgID){
 	idInput = document.getElementById('id-input-'+ rgID);
-	if (idInput.value.length > 0){
+	console.log("empty id lenght " + idInput.value.length )
+	if (idInput.value.length != ""){
 		idInput.style.background = 'palegreen';
 	} else {
 		idInput.style.background = 'tomato';
