@@ -66,8 +66,14 @@ function RecordGroupView(groupID){
 	this.idInput.setAttribute('id','id-input-'+groupID);
 	this.idInput.setAttribute('class','id-input');
 	this.idInput.setAttribute('oninput','checkIdInput('+groupID+')');
-	this.idLabel.appendChild(this.idInput);
+	this.idLabel.setAttribute('for', 'id-input-'+groupID);
 	this.divRecordHeader.appendChild(this.idLabel);
+	this.divRecordHeader.appendChild(this.idInput);
+	this.posBox = document.createElement('div');
+	this.posBox.setAttribute('class','position-box');
+	this.posBox.setAttribute('id','pos-box-' + groupID);
+	this.posBox.innerHTML = "1/1";
+	this.divRecordHeader.appendChild(this.posBox);
 	this.divRecordBox.appendChild(this.divRecordHeader);
 
 	// create textarea
@@ -77,12 +83,6 @@ function RecordGroupView(groupID){
 	this.recordTextArea.value = sample;
 	this.divRecordBox.appendChild(this.recordTextArea);
 
-	// add saved date
-	this.saveTimeBox = document.createElement('div');
-	this.saveTimeBox.setAttribute('class', 'saved-date-box');
-	this.saveTimeBox.setAttribute('id', 'sv-date-'+ groupID);
-	this.saveTimeBox.innerHTML= "<p>No date</p>";
-	this.divRecordBox.appendChild(this.saveTimeBox);
 
 	// create record controls
 	this.divControlBox = document.createElement('div');
@@ -116,11 +116,18 @@ function RecordGroupView(groupID){
 	this.nextBtn.innerHTML = svgIconSet['next'];
 	this.divControlBox.appendChild(this.nextBtn);
 
-	this.posBox = document.createElement('span');
-	this.posBox.setAttribute('class','position-box');
-	this.posBox.setAttribute('id','pos-box-' + groupID);
-	this.posBox.innerHTML = "n/n";
-	this.divControlBox.appendChild(this.posBox);
+	// status div
+	this.statusBox = document.createElement('div');
+	this.statusBox.setAttribute('class', 'rg-status-box');
+
+	// add saved date
+	this.saveTimeBox = document.createElement('div');
+	this.saveTimeBox.setAttribute('class', 'saved-date-box');
+	this.saveTimeBox.setAttribute('id', 'sv-date-'+ groupID);
+	this.saveTimeBox.innerHTML= "<p>No date</p>";
+	this.statusBox.appendChild(this.saveTimeBox);
+
+	this.divControlBox.appendChild(this.statusBox);
 
 	// add controls
 	this.divRecordBox.appendChild(this.divControlBox);
@@ -137,8 +144,9 @@ RecordGroupView.prototype.refreshDisplayedRecord = function() {
 
 	// set date
 	var d = new Date(gs.recordSet[gs.displayedIndex].savedAt);
+	//var ds = [d.getHours(),":",d.getMinutes(),":",d.getSeconds()].join("");
 	var ds = d.toLocaleTimeString();
-	indocDate.innerHTML = '<p> Saved: <i>'+ds+'<i></p>'
+	indocDate.innerHTML = '<p> <i>'+ds+'<i></p>'
 	indocPos.innerText	= (gs.displayedIndex + 1)+'/'+ gs.recordSet.length;
 	// set color of id field
 	checkIdInput(this.groupID);
