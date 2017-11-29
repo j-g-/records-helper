@@ -66,6 +66,7 @@ function RecordGroupView(groupID){
 	this.idInput.setAttribute('id','id-input-'+groupID);
 	this.idInput.setAttribute('class','id-input');
 	this.idInput.setAttribute('oninput','checkIdInput('+groupID+')');
+	this.idInput.setAttribute('placeholder','Enter ID');
 	this.idLabel.setAttribute('for', 'id-input-'+groupID);
 	this.divRecordHeader.appendChild(this.idLabel);
 	this.divRecordHeader.appendChild(this.idInput);
