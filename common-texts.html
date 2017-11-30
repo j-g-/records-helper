@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Copy Text Helper</title>
+<meta charset="utf-8">
+<style>
+textarea{
+	display: inline-block;
+	width: 100%;
+	resize: vertical;
+}
+div.sample-pg{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	font-size: small;
+	background-color: ;
+}
+div.sample-pg-even{ background-color: palegreen; }
+div.sample-pg-odd{ background-color: lightblue; }
+div.sample-pg:hover {
+	font-size: large;
+	background-color: yellow;
+}
+</style>
+</head>
+<body>
+	<div id="content">
+		<div id="control-box">
+			<textarea id="samples-input"></textarea>
+			<button  id="samples-input" onclick="splitText('samples-input')"> Process</button>
+		</div>
+		<div id="samples-box">
+		</div>
+	</div>
+</body>
+<script>
+var pgSet = [];
+
+function copyToClipboard(pgID){
+	console.log("Copied paragraph " + pgID  );
+	id = 'sample-'+ pgID;
+	pgBox = document.getElementById(id); //text area
+	pgBox.setAttribute('editable', 'true');
+	pgBox.select();
+	document.execCommand("Copy");
+	pgBox.setAttribute('editable', 'false');
+}
+function splitText(textAreaID){
+	var ta = document.getElementById(textAreaID);
+	var sampleContent = ta.value;
+	var sp = sampleContent.split('\n');
+	var samplesBox = document.getElementById('samples-box');
+	var count = 0;
+	for(var i = 0, l = sp.length ; i < l ; i++ ){
+		if(sp[i].length > 0 ) {
+			count++;
+			var np = document.createElement('div');
+			var npclass = ((count%2) > 0 )? 'odd': 'even';
+			np.setAttribute('class', 'sample-pg '+ 'sample-pg-'+ npclass);
+			np.setAttribute('id', 'sample-' + count);
+			np.setAttribute('onclick', 'copyToClipboard(' + count + ')');
+			np.innerText = sp[i];
+			samplesBox.appendChild(np);
+		}
+	}
+}
+</script>
+
+</html>
