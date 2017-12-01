@@ -43,6 +43,7 @@ function TxtPackView(txtPack){
 	this.nameBox = document.createElement('div') ;
 	this.nameBox.setAttribute('class', 'txt-pack-name') ;
 	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.name ) ;
+	this.nameBox.innerText = txtPack.name;
 	this.packBox.appendChild(this.nameBox) ;
 
 	this.txtSetBox = document.createElement('div') ;
@@ -56,14 +57,18 @@ function TxtPackView(txtPack){
 		var ntxt = txtPack.txtSet.length;
 		for (var i = 0; i < ntxt; i++) {
 			this.pgBoxSet[i] = document.createElement('div');
-			var pgid ='pg-'+ txtPack.name+'-'+ i;
+			var pgid ='pg-box-'+ txtPack.name+'-'+ i;
+			var txtid ='pg-txt-'+ txtPack.name+'-'+ i;
 			this.pgBoxSet[i].setAttribute('id', pgid);
 			var pgclasses = 'pg-box ';
 			pgclasses += (i%2 > 0 )? 'pg-odd':'pg-even';
 			console.log('pg classes : ' + pgclasses)
 			this.pgBoxSet[i].setAttribute('class', pgclasses);
-			this.pgBoxSet[i].setAttribute('onclick','copyToClipboard("'+pgid+'")');
-			this.pgBoxSet[i].innerText = txtPack.txtSet[i] ;
+			this.pgBoxSet[i].setAttribute('onclick','copyToClipboard("'+txtid+'")');
+			this.pgBoxSet[i].innerHTML = [
+                '<span class="pg-num">',i,'</span>',
+                '<span id="',txtid,'" class="pg-txt">',txtPack.txtSet[i],'</span>'
+            ].join("");
 			this.txtSetBox.appendChild(this.pgBoxSet[i]);
 		}
 	}
@@ -95,7 +100,7 @@ function parse(text, catgSet){
 	var sp = text.split('\n');
 	var samplesBox = document.getElementById('samples-box');
 	var count = 0;
-    var catRegexp = /(?:^[\*#]+)(?:\s*)((\w*|\s*(?=\w))*)(?:\s*)(?:[\*#]*$)/g;
+    var catRegexp = /(?:^[\*#]+)(?:\s*)(([\w\/-_]*|\s*(?=\w))*)(?:\s*)(?:[\*#]*$)/g;
     var catCount = 0;
     var lastCatgFound = "";
     var isCatergory = function(txtLine){

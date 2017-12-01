@@ -4,23 +4,55 @@
 <title>Copy Text Helper</title>
 <meta charset="utf-8">
 <style>
+html{ font-family: sans-serif; }
 textarea{
 	display: inline-block;
 	width: 100%;
 	resize: vertical;
 }
+.pg-num{
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    width: auto;
+    display: inline-block;
+    width: 2em;
+    align-self: flex-start;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0px 2px 0px 2px;
+    margin-right: 0.5em;
+    font-size: smaller;
+}
+.pg-txt{
+        flex: 1;
+}
+div.txt-pack-name{
+	margin: 0px;
+	padding: 0.2em 1em 0.2em 1em;
+	font-size: Large;
+    color: white;
+    text-align: center;
+	background-color: black;
+}
 div.pg-box{
+    display: flex;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
 	font-size: small;
-	background-color: ;
+    font-weight:bold;
+    text-overflow: hidden;
 }
-div.pg-even{ background-color: palegreen; }
+div.pg-even{ background-color: white; }
 div.pg-odd{ background-color: lightblue; }
 div.pg-box:hover {
-	font-size: large;
-	background-color: yellow;
+	font-size: medium;
+	font-style: italic;
+    font-weight:bold;
+	background-color: khaki;
+    text-overflow: visible;
 }
 </style>
 </head>
