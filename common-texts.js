@@ -1,64 +1,72 @@
-var pgSet = [];
 
-var catgSet = { 
-    categories: [],
-    packSet:{ }
-    packViewSet:{ }
-    var categoryExists = function(catg){
-        for (var i = 0, len = categories.length; i < len; i++) {
-            if (categories[i] === catg){
-                return true;
-            } 
-        }
-        return false;
-    }
+function CategorySet(){
+    this.categories = [];
+    this.txtPackSet = {};
+}
+CategorySet.prototype.categoryExists = function(catg){
 
-    var addCategory = function(catg){
-        if (! categoryExists(catg)){
-            categories.push(catg);
-            catgSet[catg] = new TxtPack(catg);
-        };
-    }
-    var addTxtToCat = function(txt, catg){
-        if (! categoryExists(catg)){
-            addCategory(catg);
-        };
-        catgSet[catg].addTxt(txt);
-    }
-};
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		if (this.categories[i] === catg){
+			return true;
+		} 
+	}
+	return false;
+}
+CategorySet.prototype.addCategoryIfNotExists = function(catg){
+	if (! this.categoryExists(catg)){
+		this.categories.push(catg);
+		this.txtPackSet[catg] = new TxtPack(catg);
+	};
+}
+CategorySet.prototype.addTxtToCat = function(txt, catg){
+	this.addCategoryIfNotExists(catg);
+	this.txtPackSet[catg].addTxt(txt);
+}
+
+categorySet = new CategorySet();
+tpvSet = [];
 
 function TxtPack(name){
     this.name = name;
     this.txtSet = [];
 }
 
-
 TxtPack.prototype.addTxt = function (txt){
     this.txtSet.push(txt);
 };
 
 function TxtPackView(txtPack){
-    
-    this.packBox = document.createElement('div') ;
-    this.packBox.setAttribute('class', 'txt-pack-box') ;
-    this.packBox.setAttribute('id', 'txt-pack-box-' + txtPack.name) ;
+	this.packBox = document.createElement('div') ;
+	this.packBox.setAttribute('class', 'txt-pack-box') ;
+	this.packBox.setAttribute('id', 'txt-pack-box-' + txtPack.name) ;
 
-    this.nameBox = document.createElement('div') ;
-    this.nameBox.setAttribute('class', 'txt-pack-name') ;
-    this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.name ) ;
+	this.nameBox = document.createElement('div') ;
+	this.nameBox.setAttribute('class', 'txt-pack-name') ;
+	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.name ) ;
+	this.packBox.appendChild(this.nameBox) ;
 
-    this.txtSetBox = document.createElement('div') ;
-    this.txtBox.setAttribute('class', 'txtset-box) ;
-    this.txtBox.setAttribute('id', 'txtset-box-' + txtPack.name) ;
+	this.txtSetBox = document.createElement('div') ;
+	this.txtSetBox.setAttribute('class', 'txtset-box');
+	this.txtSetBox.setAttribute('id', 'txtset-box-' + txtPack.name) ;
+	this.packBox.appendChild(this.txtSetBox) ;
 
-    this.pgBoxSet = []
-    
-    var ntxt = txtPack.txtSet.length;
-    for (var i = 0; i < ntxt; i++) {
+	this.pgBoxSet = []
 
-    }
-
-
+	if (txtPack != null ){
+		var ntxt = txtPack.txtSet.length;
+		for (var i = 0; i < ntxt; i++) {
+			this.pgBoxSet[i] = document.createElement('div');
+			var pgid ='pg-'+ txtPack.name+'-'+ i;
+			this.pgBoxSet[i].setAttribute('id', pgid);
+			var pgclasses = 'pg-box ';
+			pgclasses += (i%2 > 0 )? 'pg-odd':'pg-even';
+			console.log('pg classes : ' + pgclasses)
+			this.pgBoxSet[i].setAttribute('class', pgclasses);
+			this.pgBoxSet[i].setAttribute('onclick','copyToClipboard("'+pgid+'")');
+			this.pgBoxSet[i].innerText = txtPack.txtSet[i] ;
+			this.txtSetBox.appendChild(this.pgBoxSet[i]);
+		}
+	}
 }
 
 function copyToClipboard(pgID){
@@ -72,7 +80,15 @@ function copyToClipboard(pgID){
 
 function createFromTextArea(taID){
     var txt = document.getElementById(taID).value;
-    parse(txt, grpSetComTxt);
+    parse(txt, categorySet);
+	var nc = categorySet.categories.length;
+	console.log('Found '+ nc + ' categories' );
+	for (var i = 0 ; i < nc; i++ ){
+		var cname = categorySet.categories[i];
+		console.log('Generate view for category '+ cname );
+		var tv = new TxtPackView(categorySet.txtPackSet[cname]);
+		document.getElementById('samples-box').appendChild(tv.packBox);
+	}
 }
 
 function parse(text, catgSet){
@@ -83,26 +99,29 @@ function parse(text, catgSet){
     var catCount = 0;
     var lastCatgFound = "";
     var isCatergory = function(txtLine){
-        console.log("checking for Category: "+ txtLine);
+        catRegexp.exec('');
         match = catRegexp.exec(txtLine);
         if ( match != null ){
-            console.log("New Category:("+ match[1]+")");
             return true;
         } else {
             return false;
         }
     }
     var parseCatgFromLine = function(txtLine){
-        match = catRegexp.exec(txtLine);
+        catRegexp.exec('');
+        var match = catRegexp.exec(txtLine);
+		console.log("Category match : " + match);
         if ( match != null ){
-            console.log("Found Category:("+ match[1]+")");
             return match[1];
         } 
     }
+	console.log('nlines' + sp.length)
 	for(var i = 0, l = sp.length ; i < l ; i++ ){
+		console.log('checking: ' + sp[i])
 		if(sp[i].length > 0 ) {
             if (isCatergory(sp[i])){
-                lastCatgFound = parseCatgFromLine(sp);
+                var lastCatgFound = parseCatgFromLine(sp[i]);
+				console.log("Last Category Found :("+lastCatgFound +")");
                 catCount++;
             } else {
                 count++;
