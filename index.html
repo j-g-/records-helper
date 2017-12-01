@@ -10,12 +10,13 @@
 	</head>
 
     <body>
-        <button onclick="initialize()">Records Helper</button>
+        <button onclick="initializeRecords()">Records Helper</button>
+        <button onclick="initializeTime()">Time Helper</button>
     </body>
 
     <script>
 
-function initialize(){
+function initializeRecords(){
     console.log("init");
     var features = ['left=10',
                     'top=10',
@@ -34,6 +35,25 @@ function initialize(){
         features.join(','));
 	interactionWindow.locationbar.visible = false;
 	interactionWindow.focus();
+}
+function initializeTime(){
+    var features = ['left=10',
+                    'top=10',
+                    'locationbar=0',
+                    'menubar=0',
+                    'resizable=1',
+                    'scrollbars=1',
+                    'status=0',
+                    'titlebar=0',
+                    'width=250',
+                    'height=500',
+                    'toolbar=0']
+    var timeWindow = window.open( 
+        './hour.html', 
+        'Hour', 
+        features.join(','));
+	timeWindow.locationbar.visible = false;
+	timeWindow.focus();
 }
     </script>
     <!-- vim:set sw=4 ts=4 sts=2 noet: -->
