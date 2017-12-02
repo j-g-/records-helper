@@ -3,69 +3,113 @@
 <head>
 <title>Copy Text Helper</title>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
 html{ font-family: sans-serif; }
 textarea{
 	display: inline-block;
 	width: 100%;
-	resize: vertical;
+	font-family: sans-serif;
+	background-color: khaki;
+	border: none;
+	resize: none;
+	border: 1px solid black;
+	font-size: 10px;
+	flex: 1;
 }
 .pg-num{
-    border: 1px solid white;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
+    border: 2px solid black;
+	    border-radius: 12px;
+    background-color: white;
+    color: black;
     width: auto;
     display: inline-block;
-    width: 2em;
-    align-self: flex-start;
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: auto 0px auto 0px;
     box-sizing: border-box;
+    vertical-align: middle;
     text-align: center;
-    padding: 0px 2px 0px 2px;
+    align-content: center;
     margin-right: 0.5em;
     font-size: smaller;
 }
 .pg-txt{
         flex: 1;
 }
-div.txt-pack-name{
+.txt-pack-name{
+	border: 1px solid white;
 	margin: 0px;
 	padding: 0.2em 1em 0.2em 1em;
-	font-size: Large;
-    color: white;
-    text-align: center;
+	font-size: medium;
+	border-radius: 10px;
+	text-align: right;
+	color: white;
+	text-align: left;
 	background-color: black;
 }
+.ui-accordion .ui-accordion-header {
+	padding: 0.1em;
+}
+.ui-accordion .ui-accordion-content {
+	padding: 0px;
+	padding-bottom: 1em;
+}
 div.pg-box{
-    display: flex;
+	display: flex;
+	border-radius: 10px;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
 	font-size: small;
-    font-weight:bold;
-    text-overflow: hidden;
+	text-overflow: hidden;
 }
 div.pg-even{ background-color: white; }
 div.pg-odd{ background-color: lightblue; }
 div.pg-box:hover {
 	font-size: medium;
-	font-style: italic;
-    font-weight:bold;
+	font-style: none;
+	font-weight:bold;
 	background-color: khaki;
-    text-overflow: visible;
+	text-overflow: visible;
+}
+div#settings-box{
+	display: flex;
+		padding: 0.5em;
+	height: 400px;
+	flex-direction: column;
 }
 </style>
 </head>
 <body>
 	<div id="content">
-		<div id="control-box">
-			<textarea id="samples-input"></textarea>
-			<button  id="samples-input" onclick="createFromTextArea('samples-input')"> Process</button>
+		<div id="settings-toggle-box">
+			<h3>Settings</h3>
+			<div id="settings-box">
+				<textarea id="samples-input"></textarea>
+				<button  id="samples-input-btn"
+	     			onclick="createFromTextArea('samples-input')">Process</button>
+			</div>
 		</div>
 		<div id="samples-box">
 		</div>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+ crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+ crossorigin="anonymous"></script>
+<script>
+$( function (){
+	$( "#settings-toggle-box" ).accordion({ active:false, collapsible: true }); 
+	document.getElementById('samples-input').style.fontSize = 'small'; 
+		
+});
+</script>
 <script src="common-texts.js"> </script>
-
 </html>

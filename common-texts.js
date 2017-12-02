@@ -40,13 +40,13 @@ function TxtPackView(txtPack){
 	this.packBox.setAttribute('class', 'txt-pack-box') ;
 	this.packBox.setAttribute('id', 'txt-pack-box-' + txtPack.name) ;
 
-	this.nameBox = document.createElement('div') ;
+	this.nameBox = document.createElement('h3') ;
 	this.nameBox.setAttribute('class', 'txt-pack-name') ;
 	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.name ) ;
 	this.nameBox.innerText = txtPack.name;
 	this.packBox.appendChild(this.nameBox) ;
 
-	this.txtSetBox = document.createElement('div') ;
+	this.txtSetBox = document.createElement('div');
 	this.txtSetBox.setAttribute('class', 'txtset-box');
 	this.txtSetBox.setAttribute('id', 'txtset-box-' + txtPack.name) ;
 	this.packBox.appendChild(this.txtSetBox) ;
@@ -66,12 +66,21 @@ function TxtPackView(txtPack){
 			this.pgBoxSet[i].setAttribute('class', pgclasses);
 			this.pgBoxSet[i].setAttribute('onclick','copyToClipboard("'+txtid+'")');
 			this.pgBoxSet[i].innerHTML = [
-                '<span class="pg-num">',i,'</span>',
-                '<span id="',txtid,'" class="pg-txt">',txtPack.txtSet[i],'</span>'
+					'<span class="pg-num">',i,'</span>',
+					'<div id="',txtid,'" class="pg-txt">'
+					,txtPack.txtSet[i],'</div>'
             ].join("");
 			this.txtSetBox.appendChild(this.pgBoxSet[i]);
 		}
 	}
+}
+TxtPackView.prototype.makeToggleable = function(){
+	var indocHeaderID = '#' + this.nameBox.getAttribute('id');
+	var indocContentsID = '#' + this.txtSetBox.getAttribute('id');
+	$(indocHeaderID).click(function (){
+			$(indocContentsID).toggle('blind', 500);
+	
+	});
 }
 
 function copyToClipboard(pgID){
@@ -85,6 +94,12 @@ function copyToClipboard(pgID){
 
 function createFromTextArea(taID){
     var txt = document.getElementById(taID).value;
+	//reset category
+	if (categorySet.categories.length > 0){
+		categorySet.categories = [];
+		categorySet.txtPackSet = {};
+			document.getElementById('samples-box').innerHTML = '';
+	}
     parse(txt, categorySet);
 	var nc = categorySet.categories.length;
 	console.log('Found '+ nc + ' categories' );
@@ -93,6 +108,7 @@ function createFromTextArea(taID){
 		console.log('Generate view for category '+ cname );
 		var tv = new TxtPackView(categorySet.txtPackSet[cname]);
 		document.getElementById('samples-box').appendChild(tv.packBox);
+		tv.makeToggleable();
 	}
 }
 
@@ -136,10 +152,3 @@ function parse(text, catgSet){
 	}
 
 }
-                //var np = document.createElement('div');
-                //var npclass = ((count%2) > 0 )? 'odd': 'even';
-                //np.setAttribute('class', 'sample-pg '+ 'sample-pg-'+ npclass);
-                //np.setAttribute('id', 'sample-' + count);
-                //np.setAttribute('onclick', 'copyToClipboard(' + count + ')');
-                //np.innerText = sp[i];
-                //samplesBox.appendChild(np);
