@@ -1,0 +1,91 @@
+## COMMON ES
+¿Termina su número de teléfono con ?
+¿Tiene algún número de teléfono con nosotros, que pueda indicarme?
+Un momento, por favor, estoy revisando Información.
+Gracias. Permitame un momento, estoy trabajando en su cuenta.
+Tengo que agregar algunas notas acerca de esta situacion, un momento, por favor.
+Permitame revisar alguna información, un momento, por favor.
+Entiendo. Permitame revisar su cuenta.
+¿Tiene el teléfono con usted en éste momento?
+Por favor, tome en cuenta, tenemos la opción de chat en todos los sitios de nuestras marcas.
+¿Es su teléfono Android o iPhone?
+Podría indicarme el IMEI de su teléfono, por favor?
+Puede marcar *#06# para obtenerlo.
+¿Podría indicarme su número de tarjeta SIM, por favor?
+¿Sabe cuál es el modelo de su teléfono?
+Gracias, por favor, indiqueme cuando el teléfono haya encendido de nuevo.
+Esto no va ayudar, pero tengo que pedir que haga este paso, como parte del proceso que me es requerido seguir.
+De nada.
+Le gustaría participar en una pequeña encuesta acerca de nuestros servicios, es por mensaje de texto y está en Inglés?
+## CLOSE
+¿Tiene alguna otra duda o situación en la que pueda ayudarle?
+Está bien. Gracias por su paticipación. Que tenga un excelente día. Gracias por chatear con SIMPLE Mobile.
+Está bien.  De nada. Que tenga un excelente día. Gracias por chatear con SIMPLE Mobile.
+Que tenga un excelente día. Gracias por chatear con SIMPLE Mobile.
+Que tenga un excelente día.
+## NOT FOUND
+Estaba buscando el número de teléfono en el sistema, pero no se encontró ninguna información.
+## SECURITY QUESTIONS
+En este caso, sólo tengo que validar la seguridad de su cuenta.
+¿Podría indicarme su PIN de seguridad?
+Permitame enviar un mesaje de texto con un PIN temporal de 6 dígitos, válido únicamente durante esta conversación.
+Podría indicarme los últimos cuatro  dígitos de su SIM y el código postal (ZIP code) de activación?
+Ahora, indiqueme un número de cuatro dígitos que desea utilizar como PIN de seguridad. Le preguntamos éste número siempre que desea hacer cualquier cambio en su cuenta.
+## SIM CHANGE
+Tiene que comprar una nueva tarjeta SIM y contactarnos de vuelta. Para asistirle, únicamente vamos a validar la seguridad de su cuenta.
+## MIN CHANGE
+Por favor, apague y encienda su teléfono, eso va completar el cambio. Cuando haya encendido de nuevo, verifique que pueda hacer llamadas.
+## REFUND
+En este caso, necesitará contactar a nuestro departamento de reembolsos.
+Por favor, llame al 1-866-806-1840, tiene que utilizar el PIN 894847 para español, éste es válido por dos semanas. Nuestro horario de atención es de 8:00 AM a 11:45 PM hora éstandar del este. Siete días a la semana.
+Lamento el inconveniente,  no tengo información acerca de un número de referencia, tendrá que contactar al departamento de servicio al cliente regular, y pedir que le transfieran a reembolsos.
+## ACTIVATION
+¿Desea obtener un número nuevo, o transferir un número que ya tiene?
+¿Podría indicarme el codigo postal (ZIP code) dónde va utilizar el teléfono la mayoría del tiempo?
+¿Desea agregar un correo électronico?
+¿Desea agregar su fecha de nacimiento?
+¿Tiene un PIN de tiempo de aire para agregar e iniciar el servicio?
+Por favor, inserte su tarjeta SIM en la ranura apropiada, luego reinicie su teléfono.
+Por favor, reinicie su teléfono.
+Cuando haya encendido de nuevo, por favor, intente llamar a cualquier número de teléfono.
+¿Puede llamar a su número de teléfono desde otra lina, para confirmar que su teléfono recibe llamadas?
+Por favor, verifique que el WiFi esté apagado, los datos estén encendidos, y su teléfono no este en modo de avión.
+Luego, trate de abrir el sitio web purple.com, por favor.
+Ahora, verique si al mandar un mensaje con la palabra AYUDA al número 611611, recibe una respuesta. Para confirmar que los mensajes de texto funcionen.
+Éste es el último  servicio que le voy a pedir que revise. ¿Podría enviar un mesaje con una imágen a su mismo número de teléfono, por favor?
+La fecha de terminación del servicio es en . ¿Necesita asitencia para configuar su cuenta en línea "My Account"?
+## UNABLE UNABLE
+Estaba haciendo un checkeo para su tarjeta SIM, todo esta correctamente activo en nuestor sistema.
+Por favor, marque ##21#, luego presione llamar, puede ser que aparezca  un mensaje en su pantalla. Luego de eso, apague y encienda su teléfono.
+Por favor, intente llamar a cualquier número de teléfono.
+Necesito verficar la cobertura. ¿Podría inidcarme en que dirección se encuentra en este moment, por favor?
+Mi sistema muestra buena cobertura en el lugar.
+¿Puede ver más de dos barras de señal?
+¿Puede ver barras de señal en su teléfono?
+En este caso, voy a reestablecer la conexión para sue teléfono.
+Por favor, apague su teléfono, retire la tarjeta SIM, espere un minute, luego coloque de vuelta su tarjeta SIM.
+Le avisaré cuando el proceso en mi lado esté completo, y pueda encender el teléfono.
+Voy a necesitar escalara esta situacion al departamento a cargo de las torres.
+## DATA CHECK
+Estaba revisando su cuenta, su balance es correcto. Usted también puede verficiar esta información mandando la palabra USO al 611611.
+Por favor, revise que el WiFi esté apagado, los datos encendidos, y su teléfono no está en modo de avión.
+Seguido, apague y encinda su teléfono.
+¿Tiene una red de WiFi disponible? Únicamente para descargar la configuración.
+Por favor, conecte su teléfono y envie un mesaje con la palabra APN al 611611.
+## SMS 
+Ahora, verique si al mandar un mensaje con la palabra AYUDA al número 611611, recibe una respuesta. Para confirmar que los mensajes de texto funcionen.
+Can you send a picture message to yourself, please?
+¿Podría enviar un mesaje con una imágen a su mismo número de teléfono, por favor?
+## PORT IN INSTRUCTIONS
+You need to get the SIM card, and you also need to get from your current provider: account number, pin or password for the account, activation ZIP code, name in the account, and address.
+Can you tell me the ZIP code, please?
+Can you tell me the phone number you want to transfer?
+Please, provide me with the following, account number, pin or password for the account, name in the account, and address.
+The transfer process is in progress and may take a few hours to complete. In some cases, it could take as long as 2 business days. It may take longer for land-line phone numbers. During this time, your current phone will still work.After your phone stops working. Insert your SIM card into the phone, reboot your phone, and try to make a call.
+The case number is .
+** ILD **
+When you add a plan the system is going to add a balance of $10 dollars for all plans except the $60 plan, tha will give you $20, no additional cost.
+You can use your balance to make calls, and for each minute certain amount will be deducted.
+You have to dial, 011 + country code + area code + phone number.In this case, you will need to contact to our international calling department. They need to check yourPlease, call to 1-866-806-1840 and you have to use the PIN 840519 for English. The pin is valid for 2 weeks. We are open from 8:00 AM to 11:45 PM EST. 7 days of the week.
+** BRANDED FAQ **
+You have to use the phone with SIMPLE Mobile for at least one year without interruptions, to be able to request the unlocking.
