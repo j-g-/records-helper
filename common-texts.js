@@ -1,10 +1,10 @@
 
-function CategorySet(){
+// TxtPack prototype
+function TxtPack(){
     this.categories = [];
-    this.txtPackSet = {};
+    this.txtGroupSet = {};
 }
-CategorySet.prototype.categoryExists = function(catg){
-
+TxtPack.prototype.categoryExists = function(catg){
 	for (var i = 0, len = this.categories.length; i < len; i++) {
 		if (this.categories[i] === catg){
 			return true;
@@ -12,55 +12,56 @@ CategorySet.prototype.categoryExists = function(catg){
 	}
 	return false;
 }
-CategorySet.prototype.addCategoryIfNotExists = function(catg){
-	if (! this.categoryExists(catg)){
-		this.categories.push(catg);
-		this.txtPackSet[catg] = new TxtPack(catg);
+TxtPack.prototype.addCategoryIfNotExists = function(category){
+	if (! this.categoryExists(category)){
+		this.categories.push(category);
+		this.txtGroupSet[category] = new TxtGroup(category);
 	};
 }
-CategorySet.prototype.addTxtToCat = function(txt, catg){
-	this.addCategoryIfNotExists(catg);
-	this.txtPackSet[catg].addTxt(txt);
+TxtPack.prototype.addTxtToCat = function(txt, category){
+	this.addCategoryIfNotExists(category);
+	this.txtGroupSet[category].addTxt(txt);
 }
 
-categorySet = new CategorySet();
+txtPack = new TxtPack();
 tpvSet = [];
-
-function TxtPack(name){
+// TxtGroup prototype
+function TxtGroup(name){
     this.name = name;
     this.id = name.replace(/\s/g,'_');
-	console.log("Pack ID: " + this.id);
+	console.log("Group ID: " + this.id);
     this.txtSet = [];
 }
 
-TxtPack.prototype.addTxt = function (txt){
+TxtGroup.prototype.addTxt = function (txt){
     this.txtSet.push(txt);
 };
+// end TxtGroup prototype
 
-function TxtPackView(txtPack){
-	this.packBox = document.createElement('div') ;
-	this.packBox.setAttribute('class', 'txt-pack-box') ;
-	this.packBox.setAttribute('id', 'txt-pack-box-' + txtPack.id) ;
+function TxtGroupView(txtGroup){
+	this.groupBox = document.createElement('div') ;
+	this.groupBox.setAttribute('class', 'txt-pack-box') ;
+	this.groupBox.setAttribute('id', 'txt-pack-box-' + txtGroup.id) ;
 
 	this.nameBox = document.createElement('h3') ;
 	this.nameBox.setAttribute('class', 'txt-pack-name');
-	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.id ) ;
+	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtGroup.id ) ;
 	this.nameBox.innerText = txtPack.name;
-	this.packBox.appendChild(this.nameBox) ;
+	this.groupBox.appendChild(this.nameBox) ;
 
 	this.txtSetBox = document.createElement('div');
 	this.txtSetBox.setAttribute('class', 'txtset-box');
-	this.txtSetBox.setAttribute('id', 'txtset-box-' + txtPack.id) ;
-	this.packBox.appendChild(this.txtSetBox) ;
+	this.txtSetBox.setAttribute('id', 'txtset-box-' + txtGroup.id) ;
+	this.groupBox.appendChild(this.txtSetBox) ;
 
 	this.pgBoxSet = []
 
-	if (txtPack != null ){
-		var ntxt = txtPack.txtSet.length;
+	if (txtGroup.txtSet != null ){
+		var ntxt = txtGroup.txtSet.length;
 		for (var i = 0; i < ntxt; i++) {
 			this.pgBoxSet[i] = document.createElement('div');
-			var pgid  ='pg-box-'+ txtPack.id +'-'+ i;
-			var txtid ='pg-txt-'+ txtPack.id +'-'+ i;
+			var pgid  ='pg-box-'+ txtGroup.id +'-'+ i;
+			var txtid ='pg-txt-'+ txtGroup.id +'-'+ i;
 			this.pgBoxSet[i].setAttribute('id', pgid);
 			var pgclasses = 'pg-box ';
 			pgclasses += (i%2 > 0 )? 'pg-odd':'pg-even';
@@ -70,13 +71,13 @@ function TxtPackView(txtPack){
 			this.pgBoxSet[i].innerHTML = [
 					'<span class="pg-num">',i,'</span>',
 					'<div id="',txtid,'" class="pg-txt">'
-					,txtPack.txtSet[i],'</div>'
+					,txtGroup.txtSet[i],'</div>'
             ].join("");
 			this.txtSetBox.appendChild(this.pgBoxSet[i]);
 		}
 	}
 }
-TxtPackView.prototype.makeToggleable = function(){
+TxtGroupView.prototype.makeToggleable = function(){
 	var indocHeaderID = '#' + this.nameBox.getAttribute('id');
 	var indocContentsID = '#' + this.txtSetBox.getAttribute('id');
 	$(indocHeaderID).click(function (){
@@ -87,7 +88,7 @@ TxtPackView.prototype.makeToggleable = function(){
 
 function copyToClipboard(pgID){
     var r = new Range();
-	pgBox = document.getElementById(pgID); //text area
+	pgBox = document.getElementById(pgID); // paragraph div
     r.selectNode(pgBox);
     document.getSelection().addRange(r);
 	document.execCommand("copy");
@@ -96,25 +97,25 @@ function copyToClipboard(pgID){
 
 function createFromTextArea(taID){
     var txt = document.getElementById(taID).value;
-	//reset category
-	if (categorySet.categories.length > 0){
-		categorySet.categories = [];
-		categorySet.txtPackSet = {};
-			document.getElementById('samples-box').innerHTML = '';
+	//reset txtPack
+	if (txtPack.categories.length > 0){
+		txtPack.categories = [];
+		txtPack.txtPackSet = {};
+		document.getElementById('samples-box').innerHTML = '';
 	}
-    parse(txt, categorySet);
-	var nc = categorySet.categories.length;
+    parse(txt, txtPack);
+	var nc = txtPack.categories.length;
 	console.log('Found '+ nc + ' categories' );
 	for (var i = 0 ; i < nc; i++ ){
-		var cname = categorySet.categories[i];
+		var cname = txtPack.categories[i];
 		console.log('Generate view for category '+ cname );
-		var tv = new TxtPackView(categorySet.txtPackSet[cname]);
-		document.getElementById('samples-box').appendChild(tv.packBox);
-		tv.makeToggleable();
+		var gv = new TxtGroupView(txtPack.txtGroupSet[cname]);
+		document.getElementById('samples-box').appendChild(gv.groupBox);
+		gv.makeToggleable();
 	}
 }
 
-function parse(text, catgSet){
+function parse(text, txtPack){
 	var sp = text.split('\n');
 	var samplesBox = document.getElementById('samples-box');
 	var count = 0;
@@ -148,7 +149,7 @@ function parse(text, catgSet){
                 catCount++;
             } else {
                 count++;
-                catgSet.addTxtToCat(sp[i], lastCatgFound);
+                txtPack.addTxtToCat(sp[i], lastCatgFound);
             }
 		}
 	}
