@@ -28,6 +28,8 @@ tpvSet = [];
 
 function TxtPack(name){
     this.name = name;
+    this.id = name.replace(/\s/g,'_');
+	console.log("Pack ID: " + this.id);
     this.txtSet = [];
 }
 
@@ -38,17 +40,17 @@ TxtPack.prototype.addTxt = function (txt){
 function TxtPackView(txtPack){
 	this.packBox = document.createElement('div') ;
 	this.packBox.setAttribute('class', 'txt-pack-box') ;
-	this.packBox.setAttribute('id', 'txt-pack-box-' + txtPack.name) ;
+	this.packBox.setAttribute('id', 'txt-pack-box-' + txtPack.id) ;
 
 	this.nameBox = document.createElement('h3') ;
-	this.nameBox.setAttribute('class', 'txt-pack-name') ;
-	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.name ) ;
+	this.nameBox.setAttribute('class', 'txt-pack-name');
+	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtPack.id ) ;
 	this.nameBox.innerText = txtPack.name;
 	this.packBox.appendChild(this.nameBox) ;
 
 	this.txtSetBox = document.createElement('div');
 	this.txtSetBox.setAttribute('class', 'txtset-box');
-	this.txtSetBox.setAttribute('id', 'txtset-box-' + txtPack.name) ;
+	this.txtSetBox.setAttribute('id', 'txtset-box-' + txtPack.id) ;
 	this.packBox.appendChild(this.txtSetBox) ;
 
 	this.pgBoxSet = []
@@ -57,8 +59,8 @@ function TxtPackView(txtPack){
 		var ntxt = txtPack.txtSet.length;
 		for (var i = 0; i < ntxt; i++) {
 			this.pgBoxSet[i] = document.createElement('div');
-			var pgid ='pg-box-'+ txtPack.name+'-'+ i;
-			var txtid ='pg-txt-'+ txtPack.name+'-'+ i;
+			var pgid  ='pg-box-'+ txtPack.id +'-'+ i;
+			var txtid ='pg-txt-'+ txtPack.id +'-'+ i;
 			this.pgBoxSet[i].setAttribute('id', pgid);
 			var pgclasses = 'pg-box ';
 			pgclasses += (i%2 > 0 )? 'pg-odd':'pg-even';

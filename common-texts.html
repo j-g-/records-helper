@@ -18,17 +18,17 @@ textarea{
 	flex: 1;
 }
 .pg-num{
-    border: 2px solid black;
-	    border-radius: 12px;
-    background-color: white;
-    color: black;
+    border: 1px solid white;
+	    border-radius: 6px;
+    background-color: black;
+    color: white;
     width: auto;
     display: inline-block;
-    font-size: 16px;
-    width: 24px;
-    height: 24px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    font-size: 9px;
+    width: 18px;
+    height: 18px;
+    padding-top: 0px;
+    padding-bottom: 2px;
     margin: auto 0px auto 0px;
     box-sizing: border-box;
     vertical-align: middle;
@@ -36,6 +36,10 @@ textarea{
     align-content: center;
     margin-right: 0.5em;
     font-size: smaller;
+}
+
+.pg-num:hover{
+	color: red;
 }
 .pg-txt{
         flex: 1;
@@ -60,7 +64,7 @@ textarea{
 }
 div.pg-box{
 	display: flex;
-	border-radius: 10px;
+	border-radius: 6px;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
@@ -72,9 +76,12 @@ div.pg-odd{ background-color: lightblue; }
 div.pg-box:hover {
 	font-size: medium;
 	font-style: none;
-	font-weight:bold;
-	background-color: khaki;
+	/*font-weight:bold;*/
+	/*background-color: khaki;*/
+	background-color: darkblue;
+	color: white;
 	text-overflow: visible;
+	transition-duration: 0.1s;
 }
 div#settings-box{
 	display: flex;
