@@ -28,6 +28,7 @@ tpvSet = [];
 // TxtGroup prototype
 function TxtGroup(name){
     this.name = name;
+    this.colorSet = getRandomColorRGB();
     this.id = name.replace(/\s/g,'_');
 	console.log("Group ID: " + this.id);
     this.txtSet = [];
@@ -46,7 +47,8 @@ function TxtGroupView(txtGroup){
 	this.nameBox = document.createElement('h3') ;
 	this.nameBox.setAttribute('class', 'txt-pack-name');
 	this.nameBox.setAttribute('id', 'txt-pack-name-' + txtGroup.id ) ;
-	this.nameBox.innerText = txtPack.name;
+	this.nameBox.innerText = txtGroup.name;
+	this.nameBox.style.background = txtGroup.colorSet[0];
 	this.groupBox.appendChild(this.nameBox) ;
 
 	this.txtSetBox = document.createElement('div');
@@ -73,6 +75,8 @@ function TxtGroupView(txtGroup){
 					'<div id="',txtid,'" class="pg-txt">'
 					,txtGroup.txtSet[i],'</div>'
             ].join("");
+			this.pgBoxSet[i].style.background = (i%2 > 0)? txtGroup.colorSet[1] : ''
+						//(i%2 > 0)? txtGroup.colorSet[0] : "";
 			this.txtSetBox.appendChild(this.pgBoxSet[i]);
 		}
 	}
@@ -155,3 +159,17 @@ function parse(text, txtPack){
 	}
 
 }
+
+function getRandomColorRGB(){
+	function getRandomArbitrary(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+	var r = Math.floor(getRandomArbitrary(0,125));
+	var g = Math.floor(getRandomArbitrary(0,125));
+	var b = Math.floor(getRandomArbitrary(0,125));
+	var colorpair = [
+		'rgb(' + r + ','+ g + ',' + b + ')', 
+		'rgb(' + (r+125) + ','+ (g+125) + ',' + (b+125) + ')']
+	return colorpair;
+}
+
