@@ -1,88 +1,265 @@
 ## COMMON
-Does your phone number ends with ?
+
+Hi Customer.
+
+Does your phone number end with ?
+
 Do you have a phone number with us, that you can tell me?
-One moment, please, I am checking information.
-Thank you. Allow me a moment, I am working on your account.
-I have to add some notes, one moment please.
-Let me check some information, one moment, please.
-I understand. Let me check your account.
-Do you have the phone with you at this moment?
-Please, be advised that we have the chat option available in all of our websites.
-Do you have an Android or Iphone phone?
-Can you tell me the IMEI number of your device?
-You can dial *#06# to get it.
-Can you tell me your SIM card number?
-Can you tell me model of your phone?
-Thank you, let me know when the phone is back on.
-It is not going to help, but I have to ask you to as part of the process I have to follow.
-You are welcome.
-Would you like to participate in a short survey regarding our services, via text message?
-## CLOSE
-Do you have any other question or concern?
-Okay. Thank you for your participation. Have a nice day. Thank you for chatting with SIMPLE Mobile.
-Okay. You are welcome. Have a nice day. Thank you for chatting with SIMPLE Mobile.
-Have a nice day. Thank you for contacting with SIMPLE Mobile.
-Have a nice day.** NOT FOUND **
+
+Can you tell me your phone number, please?
+
 I was looking for the number but my system did not find that number.
+
+One moment, please, I am checking information.
+
+Thank you. Allow me a moment, I am working on your account.
+
+I have to add some notes, one moment please.
+
+Let me check some information, one moment, please.
+
+I understand. Let me check your account.
+
+Please, be advised that we have the chat option available in all of our websites.
+
+Can you tell me your SIM card number?
+
+I am sorry to hear that.
+
+It is not going to help, but I have to ask you to as part of the process I have to follow.
+
+You are welcome.
+
+Thank you.
+
+## CLOSE
+
+Do you have any other question or concern?
+
+Would you like to participate in a short survey regarding our services, via text message?
+
+Okay. Thank you for your participation. Have a nice day.
+
+Thank you for chatting with Walmart Family Mobile.
+
+Thank you for chatting with SIMPLE Mobile.
+
+Okay. You are welcome. Have a nice day. Thank you for chatting with SIMPLE Mobile.
+
+Have a nice day. Thank you for contacting with SIMPLE Mobile.
+
+Have a nice day.
+
+Unfortunately, we cannot continue with the troubleshooting at this moment, because you are speaking from the phone and we need to ask you to reboot the phone, that would disconnect the chat. You will need to contact us from another phone or computer to continue.
+
+　
+
+　
+
+## TECHNICAL
+
+Do you have an Android or Iphone phone?
+
+Do you have the phone with you at this moment?
+
+Are you speaking with me from the phone itself?
+
+Can you tell me the IMEI number of your device?
+
+You can dial *#06# to get it.
+
+Do you know the model of your phone?
+
+Thank you, let me know when the phone is back on.
+
+　
+
 ## SQ
+
 In this case, I just have to validate the security of your account.
+
 Can you tell me your security PIN?
+
 Let me send you a text message with a temporary password, valid just for this conversation.
+
 In that case. Can you tell me the last four digits of your SIM card number and the activation ZIP code?
+
 Now, tell me any 4-digit number that you want to use as the security PIN. We ask for this PIN when you want to make any change to the account.
-## SIM_CHANGE
+
+## SIM CHANGE
+
 You have to get the new SIM card and then call back, We are going to validate the security of your account.
-** MIN CHANGE **
+
+## MIN CHANGE
+
+Do you want to use the same ZIP code to get the new phone number?
+
 Please, reboot your phone that is going to complete the change.
+
 ## REFUND
+
 In this case, you will need to contact to our refund department.
-Please, call to 1-866-806-1840 and you have to use the PIN 840519 for English. The PIN is valid for 2 weeks. We are open from 8:00 AM to 11:45 PM EST. 7 days of the week.
+
+Please, call to 1-866-667-6470 and you have to use the PIN 949155 for English. The PIN is valid for 2 weeks. We are open from 8:00 AM to 11:45 PM EST. 7 days of the week.
+
 Sorry for the inconvenience, but I do not have information about a reference number, you will need to contact our regular customer service and ask to be transferred.
+
 ## ACTIVATION
+
 Do you want to get a new phone number or transfer a phone number that you already have?
+
 Can you tell me the ZIP code where you are going to use your phone the most of the time?
+
 Would you like to add an e-mail?
+
 Would you like to add date of birth?
+
 Do you have an airtime pin to add and start the service?
+
 Please, insert your SIM card into its slot and reboot your phone.
+
 Please, reboot your phone.
+
 Once it is back on, try to make a phone call to any phone number, please.
+
 Can you call to yourself from another number? To make sure you can receive incoming calls.
+
 Please, check your WiFi is off, your data is on, and the phone is not in airplane mode.
+
 Then, try to open purple.com, please.
+
 Now, check if you can send a text message to 611611 with the word HELP, and get a reply.
+
 This is the last feature I will ask you to check. Can you send a picture message to yourself?
+
 The service end date is on . Do you need help to setup your 'My Account'?
-## UNABLE_UNABLE
+
+## UPGRADE
+
+The new serial number will be added to your account. 
+
+The case number for this transaction is . The service end date is on . 
+
+　
+
+　
+
+## UNABLE UNABLE
+
 I was running a check for your SIM card, all seems to be correctly active in our system.
+
 Please, dial ##21#, then press call, a message may come up on your screen. After that, turn your phone off and turn it back on.
+
 Please, try to make a phone call to any phone number.
+
 I need to check the coverage. Can you tell me the address where you are located, at this moment?
+
 My system shows good coverage for that location.
+
 Can you see more than two signal bars?
-Can you any signal bars?
+
+Can you see any signal bars?
+
 In this case, I am going to reset the connection for your phone.
+
 Please turn off your phone, remove the SIM card, and wait for 1 minute and then place it back.
+
 I will let you know when the reset is complete and you can turn the phone back on.
+
 I will need to check this with the department in charge of the towers.
-## DATA_CHECK
+
+Unfortunately, since you are chatting from the same we cannot continue with the troubleshooting at this moment. You will need to contact us once you can use another device for the conversation.
+
+## DATA CHECK
+
 I was checking your account, the balance is Okay. You can also check this by texting the word usage, to 611611.
+
 Please, check your WiFi is off,  your data is on and the phone is not in airplane mode.
+
 After that, reboot your phone, please.
+
 Do you have a WiFi connection available? Just to download the settings.
+
 Please, connect your phone and send a text with the word APN, to 611611.Then try to open purple.com, please.
+
 ## SMS
+
+Please, try to send a text message to your own 10-digit phone number.
+
 Now check if you can send a text message to 611611 with the word HELP, and get a reply.
+
 Can you send a picture message to yourself, please?
-## PORT_IN_INSTRUCTIONS
+
+## PORT IN INSTRUCTIONS
+
 You need to get the SIM card, and you also need to get from your current provider: account number, PIN or password for the account, activation ZIP code, name in the account, and address.
+
 Can you tell me the ZIP code, please?
+
 Can you tell me the phone number you want to transfer?
+
 Please, provide me with the following, account number, PIN or password for the account, name in the account, and address.
+
 The transfer process is in progress and may take a few hours to complete. In some cases, it could take as long as 2 business days. It may take longer for land-line phone numbers. During this time, your current phone will still work.After your phone stops working. Insert your SIM card into the phone, reboot your phone, and try to make a call.
-The case number is .** ILD **
+
+The case number is .
+
+## ILD
+
 When you add a plan the system is going to add a balance of $10 dollars for all plans except the $60 plan, tha will give you $20, no additional cost.
+
 You can use your balance to make calls, and for each minute certain amount will be deducted.
+
 You have to dial, 011 + country code + area code + phone number.In this case, you will need to contact to our international calling department. They need to check yourPlease, call to 1-866-806-1840 and you have to use the PIN 840519 for English. The PIN is valid for 2 weeks. We are open from 8:00 AM to 11:45 PM EST. 7 days of the week.
-## BRANDED FAQ
-You have to use the phone with SIMPLE Mobile for at least one year without interruptions, to be able to request the unlocking.
+
+## BRANDED_FAQ
+
+You have to use the phone with us for at least one year without interruptions, to be able to request the unlocking.
+
+## ANDROID STEPS
+
+Please, press the volume down key and the power key at the same time. Do not worry if right before the phone reboots, it takes a screen-shot. Keep holding the buttons down until the phone reboots.
+
+## IPHONE STEPS
+
+Please, open:
+
+Settings > Cellular > Cellular Data > Cellular Data Options.
+
+Once in there, please, check that LTE is on for voice and data.
+
+Settings > General > Reset > Reset Network Settings.
+
+Your phone will reboot. Please, let me know when the phone is back on.
+
+## HOTSPOT
+
+Unfortunately, the hot-spot use is not allowed for any of our plans per our terms and conditions. 
+
+　
+
+## STOLEN 
+
+If I deactivate the service, you will lose the remaining days of service that you still have. You will not be able to recover those or the money. I would recommend you to transfer the phone number to a new SIM card, if you can. That way, you would not lose money, and the only cost is the one of the new SIM card, we do not charge anything to transfer the number.
+
+Do you want to continue with the deactivation?
+
+# POSA
+
+Please, email the following information to POP@tracfone.com. 
+
+1. A copy of the receipt.
+
+2.  Your name, contact number, and ticket number that I will provide.
+
+3. The phone's Serial Number. 
+
+4. A copy of the barcode found on the bottom of the device's package. 
+
+　
+
+## CC
+
+Unfortunately, credit and debit card transactions cannot be handled through chat, for security reasons. Please, contact one of our customer care representatives at 1-877-440-9758. For your convenience, our representatives are available Monday-Sunday from 8:00 A.M. to 11:45 P.M. EST. You may also text the key word BUY to 611611 to make the purchase.
+
+　
