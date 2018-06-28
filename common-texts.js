@@ -94,6 +94,7 @@ function copyToClipboard(pgID){
     var r = new Range();
 	pgBox = document.getElementById(pgID); // paragraph div
     r.selectNode(pgBox);
+	document.getSelection().removeAllRanges();
     document.getSelection().addRange(r);
 	document.execCommand("copy");
 	console.log("Copy paragraph " + pgID  );
